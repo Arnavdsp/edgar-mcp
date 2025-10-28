@@ -226,3 +226,11 @@ def tool_error_boundary(
             )
 
     return wrapper
+
+
+class ParseError(SECError):
+    """EDGAR returned a payload this server could not parse."""
+    default_suggestion = (
+        "The SEC payload did not match the expected schema. "
+        "Try a different filing or concept tag."
+    )
