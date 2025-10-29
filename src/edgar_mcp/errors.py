@@ -234,3 +234,10 @@ class ParseError(SECError):
         "The SEC payload did not match the expected schema. "
         "Try a different filing or concept tag."
     )
+
+
+class RequestTimeoutError(UpstreamUnavailableError):
+    """A single EDGAR request exceeded the configured timeout."""
+    default_suggestion = (
+        "SEC did not respond in time. Retry once; if it persists, tell the user."
+    )
