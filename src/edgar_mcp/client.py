@@ -700,3 +700,10 @@ def set_client(client: SECClient | None) -> None:
     """
     global _client
     _client = client
+
+_cache_hits: int = 0
+_cache_misses: int = 0
+
+def cache_stats() -> dict:
+    """Return cache hit/miss counts since process start."""
+    return {"hits": _cache_hits, "misses": _cache_misses}
