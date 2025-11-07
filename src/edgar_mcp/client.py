@@ -707,3 +707,6 @@ _cache_misses: int = 0
 def cache_stats() -> dict:
     """Return cache hit/miss counts since process start."""
     return {"hits": _cache_hits, "misses": _cache_misses}
+
+# EDGAR typically responds in <2 s or not at all; 30 s timeout was too generous.
+DEFAULT_TIMEOUT_SECONDS: float = 12.0
