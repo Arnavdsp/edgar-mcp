@@ -710,3 +710,9 @@ def cache_stats() -> dict:
 
 # EDGAR typically responds in <2 s or not at all; 30 s timeout was too generous.
 DEFAULT_TIMEOUT_SECONDS: float = 12.0
+
+import uuid
+
+def _make_request_id() -> str:
+    """Short hex ID for correlating logs to individual SEC requests."""
+    return uuid.uuid4().hex[:12]
