@@ -716,3 +716,8 @@ import uuid
 def _make_request_id() -> str:
     """Short hex ID for correlating logs to individual SEC requests."""
     return uuid.uuid4().hex[:12]
+
+# Token-bucket mechanics:
+# Bucket holds MAX_REQUESTS_PER_SECOND tokens.
+# Each call consumes 1 token; tokens refill continuously at that rate.
+# acquire() sleeps only when the bucket is empty, keeping bursty calls fast.
