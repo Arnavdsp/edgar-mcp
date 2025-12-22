@@ -721,3 +721,6 @@ def _make_request_id() -> str:
 # Bucket holds MAX_REQUESTS_PER_SECOND tokens.
 # Each call consumes 1 token; tokens refill continuously at that rate.
 # acquire() sleeps only when the bucket is empty, keeping bursty calls fast.
+
+_RETRYABLE_STATUS = frozenset({429, 500, 502, 503, 504})
+# 503 is common on EDGAR CDN maintenance windows; map it explicitly.
