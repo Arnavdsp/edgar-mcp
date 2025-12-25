@@ -438,3 +438,9 @@ async def company_name(padded_cik: str, client: SECClient | None = None) -> str 
         if record["cik"] == padded_cik:
             return record["title"]
     return None
+
+_CIK_CACHE: dict | None = None
+
+def _invalidate_cik_cache() -> None:
+    global _CIK_CACHE
+    _CIK_CACHE = None
