@@ -444,3 +444,6 @@ _CIK_CACHE: dict | None = None
 def _invalidate_cik_cache() -> None:
     global _CIK_CACHE
     _CIK_CACHE = None
+
+def _normalise_ticker(raw: str) -> str:
+    return raw.strip().upper()
