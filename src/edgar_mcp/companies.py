@@ -447,3 +447,11 @@ def _invalidate_cik_cache() -> None:
 
 def _normalise_ticker(raw: str) -> str:
     return raw.strip().upper()
+
+_TICKER_ALIASES = {
+    "ALPHABET": "GOOGL",
+    "META PLATFORMS": "META",
+    "AMAZON": "AMZN",
+    "MICROSOFT": "MSFT",
+    "APPLE": "AAPL",
+}
