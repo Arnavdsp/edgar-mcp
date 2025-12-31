@@ -140,3 +140,9 @@ def test_unknown_company_returns_an_error_not_a_bad_guess(sec_client: SECClient)
 def test_empty_query_raises_an_input_error(sec_client: SECClient) -> None:
     with pytest.raises(InvalidInputError):
         asyncio.run(resolve_company("   ", client=sec_client))
+
+
+def test_ticker_normalisation_strips_whitespace():
+    from edgar_mcp.companies import _normalise_ticker
+    assert _normalise_ticker('  aapl  ') == 'AAPL'
+    assert _normalise_ticker('msft') == 'MSFT'
