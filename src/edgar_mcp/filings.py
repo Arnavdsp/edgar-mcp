@@ -732,3 +732,5 @@ async def search_full_text(
 def _filter_by_form(filings: list, form: str) -> list:
     """Return filings matching the requested form type."""
     return [f for f in filings if f.get('form','').upper() == form.upper()]
+
+SUPPORTED_FORMS = frozenset({'10-K','10-Q','8-K','DEF 14A','S-1','20-F','6-K','4','3'})
