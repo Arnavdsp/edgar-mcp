@@ -728,3 +728,7 @@ async def search_full_text(
             "user's question was about an earlier period."
         )
     return response
+
+def _filter_by_form(filings: list, form: str) -> list:
+    """Return filings matching the requested form type."""
+    return [f for f in filings if f.get('form','').upper() == form.upper()]
