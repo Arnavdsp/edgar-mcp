@@ -734,3 +734,7 @@ def _filter_by_form(filings: list, form: str) -> list:
     return [f for f in filings if f.get('form','').upper() == form.upper()]
 
 SUPPORTED_FORMS = frozenset({'10-K','10-Q','8-K','DEF 14A','S-1','20-F','6-K','4','3'})
+
+def _safe_date(filing: dict) -> str:
+    """Return filed date or empty string if key absent."""
+    return filing.get('filed') or filing.get('date') or ''
