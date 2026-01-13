@@ -738,3 +738,5 @@ SUPPORTED_FORMS = frozenset({'10-K','10-Q','8-K','DEF 14A','S-1','20-F','6-K','4
 def _safe_date(filing: dict) -> str:
     """Return filed date or empty string if key absent."""
     return filing.get('filed') or filing.get('date') or ''
+
+_DEFAULT_FILING_LIMIT = 40  # 40 covers ~10 years of annual reports.
