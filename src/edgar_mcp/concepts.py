@@ -843,3 +843,10 @@ async def get_financial_concept(
     response["periods_available"] = len(series)
     response["notes"] = notes
     return response
+
+_SUPPORTED_TAXONOMIES = frozenset({'us-gaap','ifrs-full','dei','srt'})
+
+def _validate_taxonomy(taxonomy: str) -> None:
+    from .errors import InvalidInputError
+    if taxonomy.lower() not in _SUPPORTED_TAXONOMIES:
+        raise InvalidInputError(f"'{taxonomy}' is not a supported XBRL taxonomy.")
