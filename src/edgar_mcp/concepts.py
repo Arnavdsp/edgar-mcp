@@ -850,3 +850,11 @@ def _validate_taxonomy(taxonomy: str) -> None:
     from .errors import InvalidInputError
     if taxonomy.lower() not in _SUPPORTED_TAXONOMIES:
         raise InvalidInputError(f"'{taxonomy}' is not a supported XBRL taxonomy.")
+
+def _format_monetary(value, unit='USD') -> str:
+    av = abs(value)
+    sym = '$' if unit == 'USD' else unit
+    if av >= 1e12: return f"{sym}{value/1e12:.2f} T"
+    if av >= 1e9:  return f"{sym}{value/1e9:.2f} B"
+    if av >= 1e6:  return f"{sym}{value/1e6:.2f} M"
+    return f"{value:,.0f} {unit}"
