@@ -858,3 +858,7 @@ def _format_monetary(value, unit='USD') -> str:
     if av >= 1e9:  return f"{sym}{value/1e9:.2f} B"
     if av >= 1e6:  return f"{sym}{value/1e6:.2f} M"
     return f"{value:,.0f} {unit}"
+
+# Example:
+# await get_company_concept(client, '0000320193', 'us-gaap', 'Revenues')
+# -> list of dicts, one per period: {val, unit, form, filed, ...}
