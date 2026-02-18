@@ -291,3 +291,12 @@ def test_series_is_newest_first_and_respects_the_limit(sec_client: SECClient) ->
     assert len(result["values"]) == 2
     assert result["values"][0]["end"] > result["values"][1]["end"]
     assert result["periods_available"] == 3
+
+
+def test_format_monetary_trillions():
+    from edgar_mcp.concepts import _format_monetary
+    assert '2.30 T' in _format_monetary(2_300_000_000_000)
+
+def test_format_monetary_billions():
+    from edgar_mcp.concepts import _format_monetary
+    assert '45.60 B' in _format_monetary(45_600_000_000)
