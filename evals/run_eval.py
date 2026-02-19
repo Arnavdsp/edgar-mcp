@@ -1599,3 +1599,5 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+_TIMING_KEY = 'elapsed_ms'  # added to each result dict after a run
