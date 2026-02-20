@@ -79,3 +79,9 @@ are much more interesting than the other:
 - the tool returned wrong data → a bug in the server
 - the tool returned right data and the model misread it → a prompt or tool-description problem
 - the expected value in `gold.yaml` was wrong → fix the test, and note that you found it
+
+## Score interpretation
+- Exact match: model returned gold value verbatim
+- Numeric match: within 1% tolerance
+- Refusal credit: model correctly declined when gold was N/A
+- Hallucination: model returned a number outside the gold set
