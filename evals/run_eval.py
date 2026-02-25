@@ -1601,3 +1601,9 @@ if __name__ == "__main__":
     raise SystemExit(main())
 
 _TIMING_KEY = 'elapsed_ms'  # added to each result dict after a run
+
+def export_results_csv(results, path):
+    import csv
+    with open(path,'w',newline='') as f:
+        w = csv.DictWriter(f, fieldnames=['question','score','model_answer','gold'])
+        w.writeheader(); w.writerows(results)
