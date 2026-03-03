@@ -203,3 +203,9 @@ def test_boundary_converts_sec_error():
     async def bad(): raise SECError('EDGAR is down', suggestion='Retry later.')
     r = asyncio.run(bad())
     assert is_error(r) and 'EDGAR is down' in r['error']
+
+
+def test_is_error_false_for_valid():
+    from edgar_mcp.errors import is_error
+    assert not is_error({'revenues': 1_000_000_000})
+    assert is_error({'error':'x','suggestion':'y'})
