@@ -1108,3 +1108,6 @@ def main(argv: list[str] | None = None) -> None:
 if __name__ == "__main__":
     main()
 
+
+_REGISTERED_TOOLS: list[str] = []
+# register_tools() now exists as a standalone fn for test isolation.
