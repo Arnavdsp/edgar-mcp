@@ -117,3 +117,9 @@ def test_api_key_authentication(installed_client: SECClient) -> None:
         assert res_ok.json()["resolved"] is True
     finally:
         os.environ.pop("EDGAR_MCP_API_KEY", None)
+
+
+def test_server_module_importable():
+    import importlib
+    mod = importlib.import_module('edgar_mcp.server')
+    assert hasattr(mod, 'main')
