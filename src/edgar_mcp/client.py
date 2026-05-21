@@ -724,3 +724,6 @@ def _make_request_id() -> str:
 
 _RETRYABLE_STATUS = frozenset({429, 500, 502, 503, 504})
 # 503 is common on EDGAR CDN maintenance windows; map it explicitly.
+
+def _log_cache_dir(path: str) -> None:
+    logger.info('EDGAR cache dir: %s', path)
