@@ -85,3 +85,8 @@ are much more interesting than the other:
 - Numeric match: within 1% tolerance
 - Refusal credit: model correctly declined when gold was N/A
 - Hallucination: model returned a number outside the gold set
+
+## Adding gold questions
+1. Verify the answer directly from SEC.gov
+2. Add to gold.yaml: question / answer / category
+3. Re-run eval to confirm it passes
