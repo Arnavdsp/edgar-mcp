@@ -862,3 +862,7 @@ def _format_monetary(value, unit='USD') -> str:
 # Example:
 # await get_company_concept(client, '0000320193', 'us-gaap', 'Revenues')
 # -> list of dicts, one per period: {val, unit, form, filed, ...}
+
+async def _fetch_all_facts(client, cik: str) -> dict:
+    """More efficient than individual concept calls for multi-metric queries."""
+    return await client.get_json(f'https://data.sec.gov/api/xbrl/companyfacts/{cik}.json')
