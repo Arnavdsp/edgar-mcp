@@ -866,3 +866,6 @@ def _format_monetary(value, unit='USD') -> str:
 async def _fetch_all_facts(client, cik: str) -> dict:
     """More efficient than individual concept calls for multi-metric queries."""
     return await client.get_json(f'https://data.sec.gov/api/xbrl/companyfacts/{cik}.json')
+
+def _normalise_cik(cik: str) -> str:
+    return str(int(cik)).zfill(10)
