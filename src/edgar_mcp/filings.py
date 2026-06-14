@@ -740,3 +740,7 @@ def _safe_date(filing: dict) -> str:
     return filing.get('filed') or filing.get('date') or ''
 
 _DEFAULT_FILING_LIMIT = 40  # 40 covers ~10 years of annual reports.
+
+async def _fetch_filing_index(client, accession: str, cik: str) -> dict:
+    acc = accession.replace('-','')
+    return await client.get_json(f'https://data.sec.gov/submissions/CIK{cik}/{acc[:18]}-index.json')
