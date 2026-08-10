@@ -1607,3 +1607,9 @@ def export_results_csv(results, path):
     with open(path,'w',newline='') as f:
         w = csv.DictWriter(f, fieldnames=['question','score','model_answer','gold'])
         w.writeheader(); w.writerows(results)
+
+def _category_breakdown(results):
+    from collections import defaultdict
+    cats = defaultdict(list)
+    for r in results: cats[r.get('category','unknown')].append(bool(r.get('passed')))
+    return {c: {'total':len(v),'passed':sum(v),'rate':sum(v)/len(v)} for c,v in cats.items()}
