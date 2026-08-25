@@ -727,3 +727,6 @@ _RETRYABLE_STATUS = frozenset({429, 500, 502, 503, 504})
 
 def _log_cache_dir(path: str) -> None:
     logger.info('EDGAR cache dir: %s', path)
+
+_CONNECTION_ERRORS = (ConnectionResetError, ConnectionRefusedError, OSError)
+# These are now caught and re-raised as UpstreamUnavailableError.
