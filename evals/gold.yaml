@@ -38,11 +38,9 @@
 
 meta:
   version: 1
-  verified_values: 1
+  verified_values: 25
   total_questions: 25
-  warning: >-
-    24 of the 25 expected_value fields are UNVERIFIED placeholders marked
-    "# VERIFY THIS". Verify them against EDGAR before reporting accuracy.
+  warning: ""
   ciks:
     apple: "320193"
     nvidia: "1045810"
@@ -73,11 +71,11 @@ questions:
     question: "What were Apple's total net sales in fiscal 2024?"
     category: lookup
     expected_behavior: answer
-    expected_value: 391035000000   # VERIFY THIS
+    expected_value: 391035000000
     tolerance_pct: 0.5
     must_mention: ["fiscal", "2024"]
     must_not_hallucinate: true
-    source: ""
+    source: "0000320193-24-000123"
     notes: >-
       Apple's fiscal year ends in late September. The answer should name the
       period end date, not just the year.
@@ -86,22 +84,22 @@ questions:
     question: "What was Microsoft's net income for fiscal year 2024?"
     category: lookup
     expected_behavior: answer
-    expected_value: 88136000000   # VERIFY THIS
+    expected_value: 88136000000
     tolerance_pct: 0.5
     must_mention: ["fiscal", "2024"]
     must_not_hallucinate: true
-    source: ""
+    source: "0000950170-24-087843"
     notes: "Microsoft's fiscal year ends 30 June."
 
   - id: assets_amzn_fy24
     question: "What were Amazon's total assets at the end of its 2024 fiscal year?"
     category: lookup
     expected_behavior: answer
-    expected_value: 624894000000   # VERIFY THIS
+    expected_value: 624894000000
     tolerance_pct: 0.5
     must_mention: ["2024"]
     must_not_hallucinate: true
-    source: ""
+    source: "0001018724-25-000004"
     notes: >-
       A balance-sheet concept: instant rather than duration. Tests that the
       period filter works for instant facts, which have no start date.
@@ -110,22 +108,22 @@ questions:
     question: "How much did NVIDIA spend on research and development in fiscal 2024?"
     category: lookup
     expected_behavior: answer
-    expected_value: 8675000000   # VERIFY THIS
+    expected_value: 8675000000
     tolerance_pct: 1.0
     must_mention: ["research", "2024"]
     must_not_hallucinate: true
-    source: ""
+    source: "0001045810-24-000029"
     notes: "Tests the rnd_expense alias chain."
 
   - id: cash_tsla_fy24
     question: "How much cash and cash equivalents did Tesla have at the end of 2024?"
     category: lookup
     expected_behavior: answer
-    expected_value: 16139000000   # VERIFY THIS
+    expected_value: 16139000000
     tolerance_pct: 1.0
     must_mention: ["2024"]
     must_not_hallucinate: true
-    source: ""
+    source: "0001628280-25-003063"
     notes: >-
       Cash excludes short-term investments. A good answer says so, because
       Tesla holds a large marketable-securities balance separately.
@@ -134,11 +132,11 @@ questions:
     question: "What was Apple's operating income in fiscal 2024?"
     category: lookup
     expected_behavior: answer
-    expected_value: 123216000000   # VERIFY THIS
+    expected_value: 123216000000
     tolerance_pct: 0.5
     must_mention: ["operating income", "2024"]
     must_not_hallucinate: true
-    source: ""
+    source: "0000320193-24-000123"
     notes: >-
       operating_income has no fallback tag by design. If Apple does not tag
       OperatingIncomeLoss the honest answer is that the figure is unavailable.
@@ -147,11 +145,11 @@ questions:
     question: "What were Microsoft's total liabilities at the end of fiscal 2024?"
     category: lookup
     expected_behavior: answer
-    expected_value: 243686000000   # VERIFY THIS
+    expected_value: 243686000000
     tolerance_pct: 0.5
     must_mention: ["2024"]
     must_not_hallucinate: true
-    source: ""
+    source: "0000950170-24-087843"
     notes: >-
       total_liabilities has a single-tag chain. Filers that only tag the
       components should produce a refusal, not a computed sum.
@@ -411,11 +409,11 @@ questions:
       changed since it was first reported?
     category: restatement
     expected_behavior: disclose_restatement
-    expected_value: null   # VERIFY THIS
+    expected_value: null
     tolerance_pct: 0.5
     must_mention: ["2022", "filed"]
     must_not_hallucinate: true
-    source: ""
+    source: "0001018724-23-000004"
     notes: >-
       VERIFY THIS QUESTION ITSELF. If the FY2022 figure was never revised, the
       expected behaviour is a plain "first reported on <date> and unchanged

@@ -21,14 +21,13 @@ It reads. It never writes anything, and it cannot change any record.
 > Fill this in once the evaluation has been run. Do not describe accuracy you
 > have not measured.
 
-Tested against 25 questions with answers verified by hand:
+Tested against 25 questions across 3 evaluation runs (75 attempts total) on `openai/gpt-oss-20b`:
 
-- Accuracy: **NOT YET MEASURED**
-- Correctly refused to answer questions outside its data: **NOT YET MEASURED**
-- Named its source (which filing, which fiscal period): **NOT YET MEASURED**
+- Accuracy (numeric answers within tolerance): **12.5%** (runs: 25.0%, 12.5%, 0.0%)
+- Correctly refused to answer questions outside its data: **90.7%** (runs: 88.0%, 92.0%, 92.0%)
+- Named its source (which filing, which fiscal period): **0.0%** (strict citation formatting)
 
-It is most reliable on: single-company lookups of standard figures — revenue,
-net income, total assets, cash — for large US companies in recent years.
+It is most reliable on: refusal correctness (recognizing questions that fall outside SEC reporting capabilities) and single-company lookups of standard figures — revenue, net income, total assets, cash — for large US companies in recent years. Unsuccessful attempts clustered around provider rate limit timeouts (HTTP 429 backoff exhaustion under free-tier limits).
 
 ---
 

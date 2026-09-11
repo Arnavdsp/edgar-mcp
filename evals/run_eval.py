@@ -702,7 +702,7 @@ class OpenAICompatProvider(Provider):
         Raises:
             RuntimeError: If the endpoint keeps failing.
         """
-        for attempt in range(5):
+        for attempt in range(12):
             await self.limiter.wait()
             response = await self._http.post("/chat/completions", json=payload)
             if response.status_code == 200:
@@ -717,10 +717,10 @@ class OpenAICompatProvider(Provider):
                     f"waiting {delay:.1f}s",
                     file=sys.stderr,
                 )
-                await asyncio.sleep(min(delay, 60.0))
+                await asyncio.sleep(min(delay, 120.0))
                 continue
             raise RuntimeError(f"{response.status_code}: {response.text[:400]}")
-        raise RuntimeError("provider kept failing after 5 attempts")
+        raise RuntimeError("provider kept failing after 12 attempts")
 
     async def run(
         self, question: str, tools: list[dict[str, Any]], call_tool: Any, max_turns: int

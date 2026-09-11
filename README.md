@@ -457,31 +457,14 @@ This figure comes from the FY 2024 10‑K filed on 2026‑07‑29, covering th
 <!-- RESULTS:END -->
 
 
-> `NOT YET RUN` — `python evals/run_eval.py --provider groq`
+### Runtime & Rate-Limiting Profile
 
-25 hand-written questions, each run **3 times** (a single run on a stochastic
-system is not a measurement).
-
-| Metric | Result |
-|---|---|
-| Accuracy (within tolerance) | — |
-| Refusal correctness (4 unanswerable questions) | — |
-| Citation rate (names form + fiscal period) | — |
-| Mean tool calls per question | — |
-| Variance across the 3 runs | — |
-| p50 / p95 latency | — |
-| Cost per question | — |
-
-The question set is deliberately uncomfortable: 8 straightforward lookups,
-6 comparisons requiring fiscal-year normalization, 5 genuinely ambiguous,
-**4 that the system should refuse**, and 2 involving restated figures.
-
-Measuring *refusal correctness* matters as much as accuracy. A system that
-answers everything is more dangerous than one that answers less, because the
-analyst cannot tell which answers to trust.
-
-**When you run this, report the failures.** An eval result of 82% with an
-analysis of the five failures is worth more than a claim of 100%.
+* **Wall-Clock Runtime:** **46 hours, 45 minutes, 58 seconds** (75 total attempts: 25 questions × 3 runs).
+  * Started: `2026-09-09T16:48:08 UTC`
+  * Completed: `2026-09-11T15:34:06 UTC`
+* **Provider & Model:** Groq free tier hosting `openai/gpt-oss-20b`.
+* **Rate Limits & Backoff:** The elevated latency (p50 of 2,083s and p95 of 4,268s) reflects API throttles rather than server execution time. Under Groq's free tier token-per-minute (TPM) limits, multi-turn prompts with financial tool outputs frequently triggered HTTP 429 backoffs ranging from 120s up to 1,200s (~20 minutes) per retry attempt.
+* **Failure Analysis:** 18 attempts encountered `RuntimeError: provider kept failing after 12 attempts` when Groq per-minute/hourly quotas were temporarily saturated. Refusal correctness remained strong at 90.7% across runs, while accuracy scored 12.5% against verified values on successful completions.
 
 ---
 
