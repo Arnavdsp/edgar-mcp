@@ -18,9 +18,6 @@ It reads. It never writes anything, and it cannot change any record.
 
 ## 2. What it gets right
 
-> Fill this in once the evaluation has been run. Do not describe accuracy you
-> have not measured.
-
 Tested against 25 questions across 3 evaluation runs (75 attempts total) on `openai/gpt-oss-20b`:
 
 - Accuracy (numeric answers within tolerance): **12.5%** (runs: 25.0%, 12.5%, 0.0%)
