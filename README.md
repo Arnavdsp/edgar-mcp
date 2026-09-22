@@ -11,7 +11,6 @@ smoothed over**.
 > ### 📊 Evaluation & Deployment Status
 > * **Model & Infrastructure:** Tested on `openai/gpt-oss-20b` via Groq free tier.
 > * **Evaluation Scale:** 25 hand-verified financial questions evaluated across **3 full runs** (75 total attempts) using 6 EDGAR MCP tools over stdio.
-> * **Wall-Clock Runtime:** **46 hours, 45 minutes, 58 seconds** (governed by provider token-per-minute rate limit backoffs).
 > * **Headline Results:** **90.7% refusal correctness** (safely refusing out-of-scope or unanswerable queries) and **12.5% numeric accuracy** on standard financial lookups. See [Results](#results) below for the complete per-category and failure breakdown.
 > * **Production Deployment:** Read [`DEPLOYMENT.md`](DEPLOYMENT.md) for production guidelines, SEC rate limits (10 req/s), concept fallback tag resolution, and interpretation guardrails.
 
