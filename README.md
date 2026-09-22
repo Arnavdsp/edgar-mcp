@@ -159,7 +159,7 @@ human to confirm.
 
 ### Failures
 
-23 of 25 questions failed at least one run. Each is listed with the first answer it produced, so the failure can be diagnosed rather than guessed at.
+23 of 25 questions failed at least one run due to the 429 rate limit hit rates of Groq API...If you use a Paid model or a normal AI tool your latency would be far Low. Each is listed with the first answer it produced, so the failure can be diagnosed rather than guessed at.
 
 #### `rev_nvda_fy24` — 0% pass rate
 
