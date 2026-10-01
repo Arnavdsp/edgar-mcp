@@ -39,6 +39,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import contextlib
 import json
 import os
 import re
@@ -46,7 +47,7 @@ import statistics
 import sys
 import time
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -98,6 +99,8 @@ PRICES: dict[str, tuple[float, float]] = {
     "mistral-large-latest": (0.0, 0.0),
     "mistral-small-latest": (0.0, 0.0),
     "open-mistral-nemo": (0.0, 0.0),
+    "openai/gpt-oss-20b": (0.0, 0.0),
+    "openai/gpt-oss-120b": (0.0, 0.0),
 }
 
 
@@ -1125,6 +1128,74 @@ def write_results_md(
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def save_checkpoint(
+    path: Path,
+    *,
+    started_at: datetime,
+    spend: float,
+    runs: list[list[Attempt]],
+    current_run: int,
+    current_question_id: str,
+) -> None:
+    """Save evaluation progress to disk after each question attempt.
+
+    Uses an atomic write (temp file + rename) so an interrupted process
+    never corrupts the checkpoint file.
+
+    Args:
+        path: Path where checkpoint is stored.
+        started_at: When the eval session started.
+        spend: Cumulative dollars spent.
+        runs: Completed attempts so far.
+        current_run: Current run index (1-based).
+        current_question_id: ID of the question just completed.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = path.with_suffix(f".tmp.{os.getpid()}")
+    data = {
+        "started_at": started_at.isoformat(timespec="seconds"),
+        "spend": spend,
+        "current_run": current_run,
+        "current_question_id": current_question_id,
+        "attempts": [
+            {
+                "question_id": a.question_id,
+                "run": a.run,
+                "answer": a.answer,
+                "tool_calls": a.tool_calls,
+                "latency_s": round(a.latency_s, 3),
+                "input_tokens": a.input_tokens,
+                "output_tokens": a.output_tokens,
+                "cost_usd": a.cost_usd,
+                "scores": a.scores,
+                "error": a.error,
+            }
+            for run_attempts in runs
+            for a in run_attempts
+        ],
+    }
+    temp_path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
+    temp_path.replace(path)
+
+
+def load_checkpoint(path: Path) -> dict[str, Any] | None:
+    """Read a saved checkpoint file, if present.
+
+    Args:
+        path: Path to the checkpoint JSON file.
+
+    Returns:
+        The deserialized checkpoint payload, or None if missing or unreadable.
+    """
+    if not path.is_file():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"Warning: could not read checkpoint file {path}: {exc}", file=sys.stderr)
+        return None
+
+
 # --------------------------------------------------------------------------- #
 # Orchestration
 # --------------------------------------------------------------------------- #
@@ -1177,7 +1248,41 @@ async def run_eval(args: argparse.Namespace) -> int:
     runs: list[list[Attempt]] = []
     spend = 0.0
     halted = False
-    started_at = datetime.now(timezone.utc)
+    started_at = datetime.now(UTC)
+
+    checkpoint_path = (
+        Path(args.checkpoint_file)
+        if args.checkpoint_file
+        else (Path(args.results_dir) / "checkpoint.json")
+    )
+    resumed_attempts: dict[tuple[int, str], Attempt] = {}
+
+    if args.resume and checkpoint_path.is_file():
+        cp = load_checkpoint(checkpoint_path)
+        if cp:
+            spend = float(cp.get("spend", 0.0))
+            if "started_at" in cp:
+                with contextlib.suppress(Exception):
+                    started_at = datetime.fromisoformat(cp["started_at"])
+            for a_raw in cp.get("attempts", []):
+                resumed_att = Attempt(
+                    question_id=a_raw["question_id"],
+                    run=int(a_raw["run"]),
+                    answer=a_raw.get("answer", ""),
+                    tool_calls=a_raw.get("tool_calls", []),
+                    latency_s=float(a_raw.get("latency_s", 0.0)),
+                    input_tokens=int(a_raw.get("input_tokens", 0)),
+                    output_tokens=int(a_raw.get("output_tokens", 0)),
+                    cost_usd=a_raw.get("cost_usd"),
+                    scores=a_raw.get("scores", {}),
+                    error=a_raw.get("error"),
+                )
+                resumed_attempts[(resumed_att.run, resumed_att.question_id)] = resumed_att
+            print(
+                f"Resuming: loaded {len(resumed_attempts)} completed attempts "
+                f"from {checkpoint_path}",
+                file=sys.stderr,
+            )
 
     async with stdio_client(params) as (read, write), ClientSession(read, write) as session:
         await session.initialize()
@@ -1211,6 +1316,16 @@ async def run_eval(args: argparse.Namespace) -> int:
         for run_index in range(1, args.runs + 1):
             attempts: list[Attempt] = []
             for position, question in enumerate(questions, start=1):
+                key = (run_index, question.id)
+                if key in resumed_attempts:
+                    print(
+                        f"[run {run_index}/{args.runs}] "
+                        f"[{position}/{len(questions)}] {question.id} (resumed from checkpoint)",
+                        file=sys.stderr,
+                    )
+                    attempts.append(resumed_attempts[key])
+                    continue
+
                 if args.max_cost and spend >= args.max_cost:
                     print(
                         f"HALTED: spend ${spend:.4f} reached --max-cost "
@@ -1252,6 +1367,17 @@ async def run_eval(args: argparse.Namespace) -> int:
                 )
                 score_attempt(question, attempt)
                 attempts.append(attempt)
+
+                # Persist checkpoint after every attempt
+                current_runs = runs + [attempts]
+                save_checkpoint(
+                    checkpoint_path,
+                    started_at=started_at,
+                    spend=spend,
+                    runs=current_runs,
+                    current_run=run_index,
+                    current_question_id=question.id,
+                )
             runs.append(attempts)
             if halted:
                 break
@@ -1264,7 +1390,7 @@ async def run_eval(args: argparse.Namespace) -> int:
     summary = aggregate([r for r in runs if r])
     add_category_rollup(summary, questions)
 
-    finished_at = datetime.now(timezone.utc)
+    finished_at = datetime.now(UTC)
     config = {
         "provider": provider.name,
         "model": args.model,
@@ -1316,6 +1442,14 @@ async def run_eval(args: argparse.Namespace) -> int:
     )
 
     write_results_md(results_dir / "RESULTS.md", summary, questions, config)
+
+    # Clean up / mark checkpoint complete
+    if checkpoint_path.is_file():
+        try:
+            completed_marker = checkpoint_path.with_suffix(".json.completed")
+            checkpoint_path.rename(completed_marker)
+        except Exception:
+            pass
 
     print(f"\nWrote {json_path}", file=sys.stderr)
     print(f"Wrote {results_dir / 'RESULTS.md'}", file=sys.stderr)
@@ -1387,6 +1521,17 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Load and check gold.yaml, print the distribution, and exit. "
         "Needs no API key and no network.",
+    )
+    parser.add_argument(
+        "--checkpoint-file",
+        default=None,
+        help="Path to checkpoint file for saving/resuming progress. "
+        "Defaults to <results-dir>/checkpoint.json.",
+    )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume an interrupted evaluation run from the checkpoint file if one exists.",
     )
     return parser
 

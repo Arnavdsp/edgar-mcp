@@ -1,0 +1,25 @@
+services:
+  edgar-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: edgar-mcp:latest
+    container_name: edgar-mcp
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - EDGAR_MCP_USER_AGENT=${EDGAR_MCP_USER_AGENT:-Arnav arnavhpd@gmail.com}
+      - EDGAR_MCP_API_KEY=${EDGAR_MCP_API_KEY:-}
+    volumes:
+      - edgar_cache:/data/cache
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  edgar_cache:
+    driver: local

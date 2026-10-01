@@ -31,12 +31,17 @@ session down. The handler below is pinned to ``sys.stderr`` for that reason.
 from __future__ import annotations
 
 import argparse
+import contextlib
 import logging
+import os
 import sys
 from datetime import date, datetime
 from typing import Any
 
+import anyio
 from mcp.server.fastmcp import FastMCP
+from starlette.requests import Request
+from starlette.responses import JSONResponse, Response
 
 from . import client as client_module
 from . import companies as companies_module
@@ -642,6 +647,324 @@ async def search_full_text(
 
 
 # --------------------------------------------------------------------------- #
+# HTTP & REST Endpoints (Universal AI & Orchestration Support)
+# --------------------------------------------------------------------------- #
+
+TOOLS_MAP = {
+    "resolve_company": resolve_company,
+    "list_filings": list_filings,
+    "get_financial_concept": get_financial_concept,
+    "compare_companies": compare_companies,
+    "get_filing_section": get_filing_section,
+    "search_full_text": search_full_text,
+}
+
+
+def _cors_headers() -> dict[str, str]:
+    """Return standard CORS headers for browser and REST clients."""
+    return {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    }
+
+
+def _get_tools_spec() -> list[dict[str, Any]]:
+    """Return function specifications for all six tools."""
+    return [
+        {
+            "name": "resolve_company",
+            "description": "Find a company's SEC CIK number from a ticker symbol or company name.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Ticker symbol (e.g. AAPL) or company name. Prefer ticker.",
+                    }
+                },
+                "required": ["query"],
+            },
+        },
+        {
+            "name": "list_filings",
+            "description": "List a company's recent filings, identifying amendments (10-K/A).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "cik": {"type": "string", "description": "The company's SEC CIK number."},
+                    "forms": {
+                        "type": "string",
+                        "description": "Comma-separated form types (e.g. '10-K,10-Q').",
+                        "default": "10-K,10-Q",
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Maximum number of filings to return.",
+                        "default": 10,
+                    },
+                },
+                "required": ["cik"],
+            },
+        },
+        {
+            "name": "get_financial_concept",
+            "description": (
+                "Retrieve an XBRL financial concept (e.g., revenue, net_income) "
+                "across fiscal periods."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "cik": {"type": "string", "description": "The company's SEC CIK number."},
+                    "concept": {
+                        "type": "string",
+                        "description": (
+                            "Financial concept: revenue, net_income, operating_income, "
+                            "gross_profit, total_assets, total_liabilities, "
+                            "stockholders_equity, cash_and_equivalents, or eps."
+                        ),
+                    },
+                    "fiscal_year": {
+                        "type": "integer",
+                        "description": "Filter by fiscal year (e.g. 2024).",
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "'annual' (10-K only) or 'quarterly' (10-Q only).",
+                    },
+                },
+                "required": ["cik", "concept"],
+            },
+        },
+        {
+            "name": "compare_companies",
+            "description": (
+                "Compare a single financial concept across multiple companies "
+                "for the same fiscal year."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ciks": {
+                        "type": "string",
+                        "description": "Comma-separated list of CIK numbers.",
+                    },
+                    "concept": {
+                        "type": "string",
+                        "description": "Financial concept name.",
+                    },
+                    "fiscal_year": {
+                        "type": "integer",
+                        "description": "Fiscal year to compare (e.g. 2024).",
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "'annual' or 'quarterly'.",
+                    },
+                },
+                "required": ["ciks", "concept", "fiscal_year"],
+            },
+        },
+        {
+            "name": "get_filing_section",
+            "description": (
+                "Extract a named section (e.g. item_1a_risk_factors, item_7_mda) "
+                "from a 10-K or 10-Q filing."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "cik": {"type": "string", "description": "The company's SEC CIK number."},
+                    "form": {"type": "string", "description": "Form type ('10-K' or '10-Q')."},
+                    "fiscal_year": {"type": "integer", "description": "Fiscal year of the filing."},
+                    "section": {
+                        "type": "string",
+                        "description": (
+                            "Section identifier (e.g. 'item_1a_risk_factors', 'item_7_mda')."
+                        ),
+                    },
+                },
+                "required": ["cik", "form", "fiscal_year", "section"],
+            },
+        },
+        {
+            "name": "search_full_text",
+            "description": "Search SEC EDGAR filing text by keywords from 2001 onward.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string", "description": "Search query terms."},
+                    "forms": {
+                        "type": "string",
+                        "description": "Comma-separated form types (e.g. '10-K,10-Q,8-K').",
+                    },
+                    "date_from": {"type": "string", "description": "Start date YYYY-MM-DD."},
+                    "date_to": {"type": "string", "description": "End date YYYY-MM-DD."},
+                    "limit": {
+                        "type": "integer",
+                        "description": "Max results to return (up to 100).",
+                        "default": 10,
+                    },
+                },
+                "required": ["query"],
+            },
+        },
+    ]
+
+
+def _generate_openapi_spec() -> dict[str, Any]:
+    """Generate OpenAPI 3.1 specification for all tools."""
+    paths: dict[str, Any] = {
+        "/health": {
+            "get": {
+                "summary": "Health Check",
+                "description": "Returns operational status and cache statistics.",
+                "responses": {"200": {"description": "Server is healthy."}},
+            }
+        },
+        "/v1/tools": {
+            "get": {
+                "summary": "OpenAI Tool Manifest",
+                "description": "Returns list of tools in OpenAI function format.",
+                "responses": {"200": {"description": "Tool definitions."}},
+            }
+        },
+    }
+    for spec in _get_tools_spec():
+        tool_name = spec["name"]
+        paths[f"/api/tools/{tool_name}"] = {
+            "post": {
+                "summary": spec["name"],
+                "description": spec["description"],
+                "requestBody": {
+                    "required": True,
+                    "content": {
+                        "application/json": {
+                            "schema": spec["parameters"],
+                        }
+                    },
+                },
+                "responses": {
+                    "200": {"description": "Successful tool response"},
+                    "400": {"description": "Invalid input arguments"},
+                    "401": {"description": "Unauthorized"},
+                },
+            }
+        }
+    return {
+        "openapi": "3.1.0",
+        "info": {
+            "title": "EDGAR MCP Universal API",
+            "version": "0.1.0",
+            "description": "Production-grade REST and MCP API for SEC EDGAR financial filings.",
+        },
+        "paths": paths,
+    }
+
+
+@mcp.custom_route("/health", methods=["GET", "OPTIONS"])
+async def health_endpoint(request: Request) -> Response:
+    """Check health and cache metrics."""
+    if request.method == "OPTIONS":
+        return Response(status_code=200, headers=_cors_headers())
+    client = client_module.get_client()
+    ticker_count = (
+        len(companies_module._ticker_cache)
+        if companies_module._ticker_cache is not None
+        else 0
+    )
+    data = {
+        "status": "healthy",
+        "service": "edgar-mcp",
+        "version": "0.1.0",
+        "tools_count": len(TOOLS_MAP),
+        "ticker_cache_size": ticker_count,
+        "cache_enabled": client.use_cache if hasattr(client, "use_cache") else True,
+        "sec_rate_limit": getattr(client, "rate_limit", 10.0),
+    }
+    return JSONResponse(data, headers=_cors_headers())
+
+
+@mcp.custom_route("/v1/tools", methods=["GET", "OPTIONS"])
+async def openai_tools_endpoint(request: Request) -> Response:
+    """Expose tools in OpenAI function-calling format."""
+    if request.method == "OPTIONS":
+        return Response(status_code=200, headers=_cors_headers())
+    return JSONResponse(
+        {"tools": [{"type": "function", "function": spec} for spec in _get_tools_spec()]},
+        headers=_cors_headers(),
+    )
+
+
+@mcp.custom_route("/openapi.json", methods=["GET", "OPTIONS"])
+async def openapi_spec_endpoint(request: Request) -> Response:
+    """Return OpenAPI 3.1 specification for ChatGPT and REST clients."""
+    if request.method == "OPTIONS":
+        return Response(status_code=200, headers=_cors_headers())
+    return JSONResponse(_generate_openapi_spec(), headers=_cors_headers())
+
+
+@mcp.custom_route("/api/tools/{tool_name}", methods=["POST", "OPTIONS"])
+async def invoke_tool_endpoint(request: Request) -> Response:
+    """Execute a tool via standard REST HTTP POST."""
+    if request.method == "OPTIONS":
+        return Response(status_code=200, headers=_cors_headers())
+
+    expected_key = os.environ.get("EDGAR_MCP_API_KEY")
+    if expected_key:
+        auth_header = request.headers.get("Authorization", "")
+        token = ""
+        if auth_header.startswith("Bearer "):
+            token = auth_header.removeprefix("Bearer ").strip()
+        if token != expected_key:
+            return JSONResponse(
+                {"error": "Unauthorized: invalid or missing API key"},
+                status_code=401,
+                headers=_cors_headers(),
+            )
+
+    tool_name = request.path_params.get("tool_name", "")
+    func = TOOLS_MAP.get(tool_name)
+    if func is None:
+        return JSONResponse(
+            {"error": f"Tool '{tool_name}' not found. Available tools: {list(TOOLS_MAP.keys())}"},
+            status_code=404,
+            headers=_cors_headers(),
+        )
+
+    try:
+        body = (
+            await request.json()
+            if request.headers.get("content-type", "").startswith("application/json")
+            else {}
+        )
+    except Exception as exc:  # noqa: BLE001
+        return JSONResponse(
+            {"error": f"Invalid JSON body: {exc}"},
+            status_code=400,
+            headers=_cors_headers(),
+        )
+
+    arguments = body.get("arguments", body) if isinstance(body, dict) else {}
+    try:
+        result = await func(**arguments)
+        return JSONResponse(result, headers=_cors_headers())
+    except TypeError as exc:
+        return JSONResponse(
+            {"error": f"Invalid arguments for {tool_name}: {exc}"},
+            status_code=400,
+            headers=_cors_headers(),
+        )
+    except Exception as exc:  # noqa: BLE001
+        return JSONResponse(
+            {"error": f"Tool execution failed: {exc}"},
+            status_code=500,
+            headers=_cors_headers(),
+        )
+
+
+# --------------------------------------------------------------------------- #
 # Entry point
 # --------------------------------------------------------------------------- #
 
@@ -655,6 +978,26 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="edgar-mcp",
         description="MCP server exposing SEC EDGAR filing data as six tools.",
+    )
+    parser.add_argument(
+        "--transport",
+        default="stdio",
+        choices=["stdio", "sse", "streamable-http"],
+        help=(
+            "Transport protocol: 'stdio' for CLI/Claude Desktop, 'sse' or "
+            "'streamable-http' for persistent HTTP."
+        ),
+    )
+    parser.add_argument(
+        "--host",
+        default="127.0.0.1",
+        help="Host interface to bind HTTP/SSE server (e.g. 0.0.0.0).",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=8000,
+        help="Port to bind HTTP/SSE server. Default 8000.",
     )
     parser.add_argument(
         "--no-cache",
@@ -684,6 +1027,23 @@ def build_parser() -> argparse.ArgumentParser:
         help="Requests per second ceiling. Cannot exceed 10.",
     )
     parser.add_argument(
+        "--prewarm",
+        action="store_true",
+        default=True,
+        help="Pre-load SEC company ticker cache on startup to eliminate cold-start latency.",
+    )
+    parser.add_argument(
+        "--no-prewarm",
+        action="store_false",
+        dest="prewarm",
+        help="Skip ticker cache pre-warming.",
+    )
+    parser.add_argument(
+        "--api-key",
+        default=None,
+        help="Optional API key for authenticating HTTP REST requests.",
+    )
+    parser.add_argument(
         "--log-level",
         default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
@@ -693,13 +1053,16 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> None:
-    """Configure the shared client and run the server over stdio.
+    """Configure the shared client and run the server.
 
     Args:
         argv: Command-line arguments. Defaults to ``sys.argv[1:]``.
     """
     args = build_parser().parse_args(argv)
     logging.getLogger().setLevel(args.log_level)
+
+    if args.api_key:
+        os.environ["EDGAR_MCP_API_KEY"] = args.api_key
 
     client_module.set_client(
         SECClient(
@@ -713,14 +1076,35 @@ def main(argv: list[str] | None = None) -> None:
     if args.no_cache:
         companies_module.reset_ticker_cache()
 
+    # Prewarm ticker cache if requested and cache is enabled
+    if args.prewarm and not args.no_cache:
+        try:
+            logger.info("Pre-warming SEC company ticker cache...")
+            anyio.run(lambda: companies_module.load_ticker_map(client_module.get_client()))
+        except Exception as exc:
+            logger.warning("Could not pre-warm ticker map: %s", exc)
+
     logger.info(
-        "edgar-mcp starting: user_agent=%r cache=%s rate=%.1f/s",
+        "edgar-mcp starting: transport=%s host=%s port=%d user_agent=%r cache=%s rate=%.1f/s",
+        args.transport,
+        args.host,
+        args.port,
         client_module.get_client().user_agent,
         "off" if args.no_cache else (args.cache_dir or ".cache"),
         args.rate_limit,
     )
-    mcp.run(transport="stdio")
+
+    mcp.settings.host = args.host
+    mcp.settings.port = args.port
+
+    try:
+        mcp.run(transport=args.transport)
+    finally:
+        client = client_module.get_client()
+        with contextlib.suppress(Exception):
+            anyio.run(client.aclose)
 
 
 if __name__ == "__main__":
     main()
+

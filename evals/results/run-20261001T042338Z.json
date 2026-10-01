@@ -1,0 +1,4025 @@
+{
+  "config": {
+    "provider": "openai",
+    "model": "openai/gpt-oss-20b",
+    "runs": 3,
+    "question_count": 25,
+    "attempts": 75,
+    "no_cache": false,
+    "max_turns": 8,
+    "max_cost_usd": 5.0,
+    "halted_on_cost": false,
+    "started_at": "2026-09-28T23:49:28+00:00",
+    "finished_at": "2026-10-01T04:23:38+00:00",
+    "gold_meta": {
+      "version": 1,
+      "verified_values": 25,
+      "total_questions": 25,
+      "warning": "",
+      "ciks": {
+        "apple": "320193",
+        "nvidia": "1045810",
+        "microsoft": "789019",
+        "tesla": "1318605",
+        "amazon": "1018724"
+      }
+    },
+    "unverified_expected_values": []
+  },
+  "summary": {
+    "metrics": {
+      "accuracy_pct": {
+        "mean": 83.33333333333333,
+        "stdev": 7.216878364870322,
+        "runs": [
+          87.5,
+          75.0,
+          87.5
+        ]
+      },
+      "refusal_correct_pct": {
+        "mean": 92.0,
+        "stdev": 0.0,
+        "runs": [
+          92.0,
+          92.0,
+          92.0
+        ]
+      },
+      "citation_pct": {
+        "mean": 0.0,
+        "stdev": 0.0,
+        "runs": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "must_mention_pct": {
+        "mean": 62.666666666666664,
+        "stdev": 6.110100926607783,
+        "runs": [
+          68.0,
+          56.00000000000001,
+          64.0
+        ]
+      },
+      "tool_calls_mean": {
+        "mean": 1.7066666666666668,
+        "stdev": 0.6252466180103121,
+        "runs": [
+          2.28,
+          1.04,
+          1.8
+        ]
+      },
+      "latency_p50_s": {
+        "mean": 601.349,
+        "stdev": 895.4597288482604,
+        "runs": [
+          60.656,
+          1634.969,
+          108.422
+        ]
+      },
+      "latency_p95_s": {
+        "mean": 3164.8006666666665,
+        "stdev": 773.7242695342658,
+        "runs": [
+          2295.083,
+          3776.698,
+          3422.621
+        ]
+      },
+      "cost_usd_total": {
+        "mean": 0.0,
+        "stdev": 0.0,
+        "runs": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "errors": {
+        "mean": 6.0,
+        "stdev": 4.358898943540674,
+        "runs": [
+          3.0,
+          11.0,
+          4.0
+        ]
+      }
+    },
+    "per_run": [
+      {
+        "accuracy_pct": 87.5,
+        "refusal_correct_pct": 92.0,
+        "citation_pct": 0.0,
+        "must_mention_pct": 68.0,
+        "tool_calls_mean": 2.28,
+        "latency_p50_s": 60.656,
+        "latency_p95_s": 2295.083,
+        "cost_usd_total": 0.0,
+        "errors": 3.0
+      },
+      {
+        "accuracy_pct": 75.0,
+        "refusal_correct_pct": 92.0,
+        "citation_pct": 0.0,
+        "must_mention_pct": 56.00000000000001,
+        "tool_calls_mean": 1.04,
+        "latency_p50_s": 1634.969,
+        "latency_p95_s": 3776.698,
+        "cost_usd_total": 0.0,
+        "errors": 11.0
+      },
+      {
+        "accuracy_pct": 87.5,
+        "refusal_correct_pct": 92.0,
+        "citation_pct": 0.0,
+        "must_mention_pct": 64.0,
+        "tool_calls_mean": 1.8,
+        "latency_p50_s": 108.422,
+        "latency_p95_s": 3422.621,
+        "cost_usd_total": 0.0,
+        "errors": 4.0
+      }
+    ],
+    "by_question": {
+      "rev_nvda_fy24": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": true,
+        "tool_calls": [
+          3,
+          0,
+          3
+        ],
+        "latencies": [
+          16.873,
+          3388.163,
+          29.289
+        ],
+        "answers": [
+          "I couldn\u2019t find a revenue figure for NVIDIA\u2019s fiscal year\u202f2024. The most recent annual revenue data available is for FY\u202f2022 (reported in the 2022 10\u2011K, filed\u202f2022\u201103\u201118) of\u202f$26.9\u202fbillion. A FY\u202f2024 filing has not yet been submitted to the SEC.",
+          "",
+          "I couldn\u2019t find a revenue figure for NVIDIA\u2019s fiscal year\u202f2024 in the EDGAR data set. The most recent fiscal\u2011year revenue the tool can retrieve is for FY\u202f2022, which was $26.9\u202fbillion (reported in the 2022 10\u2011K filed 2022\u201103\u201118, covering 2021\u201102\u201101\u202f\u2013\u202f2022\u201101\u201130)."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 1144.7749999999999
+      },
+      "rev_aapl_fy24": {
+        "passes": 2,
+        "attempts": 3,
+        "accuracy_applicable": true,
+        "tool_calls": [
+          2,
+          0,
+          2
+        ],
+        "latencies": [
+          27.764,
+          2031.788,
+          60.812
+        ],
+        "answers": [
+          "Apple\u2019s total net sales for fiscal\u202f2024 were **$391.0\u202fbillion** (reported in the 10\u2011K for FY\u202f2024, period ending\u202f2024\u201109\u201128).",
+          "",
+          "Apple\u2019s total net sales for fiscal\u202f2024 were **$391.0\u202fbillion** (reported in the 10\u2011K for FY\u202f2024, period ending\u202f2024\u201109\u201128)."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.6666666666666666,
+        "tool_calls_mean": 1.3333333333333333,
+        "latency_mean_s": 706.788
+      },
+      "ni_msft_fy24": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": true,
+        "tool_calls": [
+          2,
+          2,
+          2
+        ],
+        "latencies": [
+          63.46,
+          2086.743,
+          60.287
+        ],
+        "answers": [
+          "Microsoft\u2019s net income for fiscal year\u202f2024 was **$88.14\u202fbillion** (US\u202f$88,136,000,000).  \nThis figure comes from the FY2024 10\u2011K (period ended\u202f2024\u201106\u201130, filed\u202f2026\u201107\u201129).",
+          "Microsoft\u2019s net income for fiscal year\u202f2024 was **$88.14\u202fbillion** (US\u202f$88,136,000,000).  \nThis figure comes from the FY2024 10\u2011K (period ended\u202f2024\u201106\u201130, filed\u202f2026\u201107\u201129).",
+          "Microsoft\u2019s net income for fiscal year\u202f2024 was **$88.14\u202fbillion** (US\u202f$88,136,000,000).  \nThis figure comes from the FY2024 10\u2011K filed on 2026\u201107\u201129, covering the period ended\u202f2024\u201106\u201130."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 736.8299999999999
+      },
+      "assets_amzn_fy24": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": true,
+        "tool_calls": [
+          2,
+          2,
+          2
+        ],
+        "latencies": [
+          56.117,
+          6.532,
+          60.061
+        ],
+        "answers": [
+          "Amazon\u2019s total assets at the end of fiscal\u202f2024 were **$624.9\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f2024\u201112\u201131).",
+          "Amazon\u2019s total assets at the end of fiscal\u202f2024 were **$624.9\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f2024\u201112\u201131).",
+          "Amazon\u2019s total assets at the end of FY\u202f2024 were **$624.9\u202fbillion** (reported in the 10\u2011K filed 2026\u201102\u201106, fiscal year\u202f2024, period end\u202f2024\u201112\u201131)."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 40.90333333333333
+      },
+      "rnd_nvda_fy24": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": true,
+        "tool_calls": [
+          2,
+          2,
+          2
+        ],
+        "latencies": [
+          43.338,
+          33.498,
+          44.495
+        ],
+        "answers": [
+          "NVIDIA spent **$8.675\u202fbillion** on research and development in fiscal\u202f2024.  \nThis figure comes from the company\u2019s 10\u2011K for FY\u202f2024 (period ended\u202f2024\u201101\u201128, filed\u202f2026\u201102\u201125).",
+          "NVIDIA spent **$8.675\u202fbillion** on research and development in fiscal\u202f2024.  \nThis figure comes from the company\u2019s 10\u2011K for FY\u202f2024 (period ended\u202fJanuary\u202f28,\u202f2024, filed\u202fFebruary\u202f25,\u202f2026).",
+          "NVIDIA spent **$8.675\u202fbillion** on research and development in fiscal\u202f2024.  \nThis figure comes from the 10\u2011K filed on\u202fFebruary\u202f25,\u202f2026 for the fiscal year ending\u202fJanuary\u202f28,\u202f2024 (FY\u202f2024)."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 40.443666666666665
+      },
+      "cash_tsla_fy24": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": true,
+        "tool_calls": [
+          2,
+          2,
+          2
+        ],
+        "latencies": [
+          28.811,
+          59.155,
+          58.314
+        ],
+        "answers": [
+          "Tesla had **$16.139\u202fbillion** in cash and cash equivalents at the end of FY\u202f2024 (period end\u202f2024\u201112\u201131). This figure comes from the 10\u2011K filed on\u202f2026\u201101\u201129 (accession\u202f0001628280\u201126\u2011003952).",
+          "Tesla had **$16.139\u202fbillion** in cash and cash equivalents at the end of FY\u202f2024 (period end\u202f2024\u201112\u201131). This figure comes from the 10\u2011K filed on\u202f2026\u201101\u201129 (accession\u202f0001628280\u201126\u2011003952).",
+          "Tesla had **$16.139\u202fbillion** in cash and cash equivalents at the end of FY\u202f2024 (period end\u202f2024\u201112\u201131). This figure comes from the 10\u2011K filed 2026\u201101\u201129, reporting FY\u202f2024."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 48.76
+      },
+      "opinc_aapl_fy24": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": true,
+        "tool_calls": [
+          2,
+          2,
+          2
+        ],
+        "latencies": [
+          61.612,
+          61.362,
+          60.74
+        ],
+        "answers": [
+          "Apple\u2019s operating income for fiscal\u202f2024 was **$123.22\u202fbillion** (US\u202f$123,216,000,000).  \nThis figure comes from the FY\u202f2024 10\u2011K filed on\u202f2025\u201110\u201131 (accession\u202f0000320193\u201125\u2011000079), covering the period ended\u202f2024\u201109\u201128.",
+          "Apple\u2019s operating income for fiscal\u202f2024 was **$123.22\u202fbillion** (US\u202f$123,216,000,000).  \nThis figure comes from the 10\u2011K filed on\u202fOctober\u202f31,\u202f2025 (accession\u202f0000320193\u201125\u2011000079) covering the period ended\u202fSeptember\u202f28,\u202f2024.",
+          "Apple\u2019s operating income for fiscal\u202f2024 was **$123.22\u202fbillion** (US\u202f$123,216,000,000).  \nThis figure comes from the 10\u2011K filed on\u202fOctober\u202f31,\u202f2025 (accession\u202f0000320193\u201125\u2011000079) covering the period ended\u202fSeptember\u202f28,\u202f2024."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 61.238
+      },
+      "liab_msft_fy24": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": true,
+        "tool_calls": [
+          2,
+          2,
+          2
+        ],
+        "latencies": [
+          45.506,
+          61.035,
+          64.031
+        ],
+        "answers": [
+          "Microsoft\u2019s total liabilities at the end of fiscal\u202f2024 were **$243.686\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f2024\u201106\u201130, filed 2025\u201107\u201130).",
+          "Microsoft\u2019s total liabilities at the end of fiscal\u202f2024 were **$243.686\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f2024\u201106\u201130, filed 2025\u201107\u201130).",
+          "Microsoft\u2019s total liabilities at the end of fiscal\u202f2024 were **$243.686\u202fbillion** (10\u2011K, fiscal year\u202f2024, period end\u202f2024\u201106\u201130, filed 2025\u201107\u201130)."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 56.85733333333334
+      },
+      "cmp_nvda_aapl_rev_fy24": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          6,
+          6,
+          2
+        ],
+        "latencies": [
+          183.55,
+          237.961,
+          45.471
+        ],
+        "answers": [
+          "NVIDIA has not yet filed a 10\u2011K for fiscal year\u202f2024, so its revenue for that year is not available in EDGAR.  \nApple Inc. reported total revenue of **$391.035\u202fbillion** for FY\u202f2024 (period ended\u202f2024\u201109\u201128, 10\u2011K filed\u202f2025\u201110\u201131).",
+          "Apple\u2019s fiscal\u202f2024 revenue was **$391.035\u202fbillion** (10\u2011K, period ended\u202f2024\u201109\u201128, filed\u202f2025\u201110\u201131).  \nNVIDIA\u2019s fiscal\u202f2024 revenue is not available in the EDGAR data set (the 10\u2011K for FY\u202f2024 ends\u202f2024\u201101\u201128, but the revenue figure is missing).",
+          "Apple\u2019s fiscal\u202f2024 revenue was **$391.0\u202fbillion** (10\u2011K, FY\u202f2024, period\u202f2023\u201110\u201101\u202fto\u202f2024\u201109\u201128, filed\u202f2025\u201110\u201131). NVIDIA has not yet filed a 10\u2011K for fiscal\u202f2024, so no revenue figure is available for that year."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 4.666666666666667,
+        "latency_mean_s": 155.66066666666669
+      },
+      "cmp_msft_aapl_ni_fy24": {
+        "passes": 2,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          4,
+          0,
+          4
+        ],
+        "latencies": [
+          60.656,
+          1634.969,
+          116.298
+        ],
+        "answers": [
+          "Apple\u2019s fiscal\u202f2024 net income was **$93.736\u202fbillion** (10\u2011K, FY\u202f2024 ended\u202fSep\u202f28\u202f2024, filed\u202fOct\u202f31\u202f2025).  \nMicrosoft\u2019s fiscal\u202f2024 net income was **$88.136\u202fbillion** (10\u2011K, FY\u202f2024 ended\u202fJun\u202f30\u202f2024, filed\u202fJul\u202f29\u202f2026).  \n\nThus Apple made more money in fiscal\u202f2024.",
+          "",
+          "Apple\u2019s fiscal\u202f2024 net income was **$93.736\u202fbillion** (10\u2011K, FY\u202f2024 ended\u202fSep\u202f28\u202f2024, filed\u202fOct\u202f31\u202f2025).  \nMicrosoft\u2019s fiscal\u202f2024 net income was **$88.136\u202fbillion** (10\u2011K, FY\u202f2024 ended\u202fJun\u202f30\u202f2024, filed\u202fJul\u202f29\u202f2026).  \n\nThus Apple made more money in fiscal\u202f2024."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.6666666666666666,
+        "tool_calls_mean": 2.6666666666666665,
+        "latency_mean_s": 603.9743333333333
+      },
+      "cmp_tsla_nvda_rnd_fy24": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          1,
+          1,
+          4
+        ],
+        "latencies": [
+          23.604,
+          1017.368,
+          108.422
+        ],
+        "answers": [
+          "The 2024 R&D expense figures are not directly comparable because the fiscal years end 338\u202fdays apart.  \n- NVIDIA\u202fCorp. FY\u202f2024 (ended\u202f2024\u201101\u201128) reported **$8.675\u202fbillion** in R&D expense (10\u2011K, filed\u202f2026\u201102\u201125, tag\u202fus\u2011gaap:ResearchAndDevelopmentExpense).  \n- Tesla,\u202fInc. FY\u202f2024 (ended\u202f2024\u201112\u201131) reported **$4.540\u202fbillion** in R&D expense (10\u2011K, filed\u202f2026\u201101\u201129, tag\u202fus\u2011gaap:ResearchAndDevelopm",
+          "The 2024 R&D expense figures are not directly comparable because the fiscal years end 338\u202fdays apart. NVIDIA\u2019s FY\u202f2024 (ended\u202f2024\u201101\u201128) reported\u202f$8.675\u202fbillion in R&D expense (10\u2011K filed\u202f2026\u201102\u201125, tag\u202fus\u2011gaap:ResearchAndDevelopmentExpense). Tesla\u2019s FY\u202f2024 (ended\u202f2024\u201112\u201131) reported\u202f$4.540\u202fbillion in R&D expense (10\u2011K filed\u202f2026\u201101\u201129, tag\u202fus\u2011gaap:ResearchAndDevelopmentExpense).",
+          "Tesla\u2019s FY\u202f2024 research\u2011and\u2011development expense was **$4.54\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f12\u201131\u20112024).  \nNVIDIA\u2019s FY\u202f2024 R&D expense was **$8.675\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f01\u201128\u20112024).  \n\nBecause the fiscal\u2011year end dates differ by more than 45\u202fdays, the two figures are not directly comparable."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 383.1313333333333
+      },
+      "cmp_amzn_msft_assets_fy24": {
+        "passes": 2,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          1,
+          0,
+          1
+        ],
+        "latencies": [
+          25.525,
+          2396.076,
+          39.872
+        ],
+        "answers": [
+          "Amazon\u2019s total assets for FY\u202f2024 were **$624.9\u202fbillion** (10\u2011K filed 2026\u201102\u201106, period end\u202f2024\u201112\u201131).  \nMicrosoft\u2019s total assets for FY\u202f2024 were **$512.2\u202fbillion** (10\u2011K filed 2025\u201107\u201130, period end\u202f2024\u201106\u201130).  \n\nBecause Microsoft\u2019s fiscal year ends 184\u202fdays before Amazon\u2019s, the two figures cover different time periods and are not directly comparable.",
+          "",
+          "Amazon\u2019s total assets for FY\u202f2024 were **$624.9\u202fbillion** (10\u2011K filed 2026\u201102\u201106, period end\u202f2024\u201112\u201131).  \nMicrosoft\u2019s total assets for FY\u202f2024 were **$512.2\u202fbillion** (10\u2011K filed 2025\u201107\u201130, period end\u202f2024\u201106\u201130).  \n\nBecause Microsoft\u2019s fiscal year ends 184\u202fdays before Amazon\u2019s, the figures cover different time periods and are not directly comparable."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.6666666666666666,
+        "tool_calls_mean": 0.6666666666666666,
+        "latency_mean_s": 820.491
+      },
+      "cmp_five_rev_fy24": {
+        "passes": 1,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          1,
+          0,
+          8
+        ],
+        "latencies": [
+          44.577,
+          4719.509,
+          177.104
+        ],
+        "answers": [
+          "**Fiscal\u20112024 revenue (USD)** \u2013 largest first (note the fiscal\u2011year end dates differ, so the figures are not directly comparable):\n\n| Company | Revenue | Fiscal\u2011year end |\n|---------|---------|-----------------|\n| Amazon\u202fInc. | **$637.959\u202fB** | 2024\u201112\u201131 (10\u2011K filed\u202f2026\u201102\u201106) |\n| Apple\u202fInc. | **$391.035\u202fB** | 2024\u201109\u201128 (10\u2011K filed\u202f2025\u201110\u201131) |\n| Microsoft\u202fCorp. | **$245.122\u202fB** | 2024\u201106\u201130 (",
+          "",
+          ""
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.3333333333333333,
+        "tool_calls_mean": 3.0,
+        "latency_mean_s": 1647.0633333333333
+      },
+      "cmp_nvda_tsla_growth": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          8,
+          0,
+          0
+        ],
+        "latencies": [
+          219.06,
+          3776.698,
+          2894.095
+        ],
+        "answers": [
+          "",
+          "",
+          ""
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 2.6666666666666665,
+        "latency_mean_s": 2296.6176666666665
+      },
+      "amb_aapl_margins": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          8,
+          0,
+          0
+        ],
+        "latencies": [
+          225.275,
+          2264.118,
+          2159.999
+        ],
+        "answers": [
+          "",
+          "",
+          ""
+        ],
+        "needs_manual_review": true,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 2.6666666666666665,
+        "latency_mean_s": 1549.7973333333332
+      },
+      "amb_apple_name": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          2,
+          0,
+          2
+        ],
+        "latencies": [
+          42.261,
+          2098.651,
+          2201.373
+        ],
+        "answers": [
+          "Apple\u2019s total revenue for fiscal\u202f2023 (ended\u202fSeptember\u202f30,\u202f2023) was **$383.285\u202fbillion**\u3010get_financial_concept\u3011. This figure comes from the company\u2019s 10\u2011K filed on\u202fOctober\u202f31,\u202f2025 (accession\u202f0000320193\u201125\u2011000079).",
+          "",
+          "Apple Inc.\u2019s total revenue for fiscal year\u202f2023 was **$383.3\u202fbillion** (US\u202f$383,285,000,000).  \nThis figure comes from the company\u2019s 10\u2011K filed on\u202f2025\u201110\u201131, covering the period ended\u202f2023\u201109\u201130."
+        ],
+        "needs_manual_review": true,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 1.3333333333333333,
+        "latency_mean_s": 1447.4283333333333
+      },
+      "amb_delta_name": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          0,
+          0,
+          0
+        ],
+        "latencies": [
+          5.691,
+          0.646,
+          1151.572
+        ],
+        "answers": [
+          "Which \u201cDelta\u201d are you referring to? Options include Delta Air Lines (ticker DAL), Delta Dental (ticker DLT), Delta Electronics (ticker DLT), etc. Please specify the ticker or full company name.",
+          "Which \u201cDelta\u201d are you referring to? Options include Delta Air Lines (ticker DAL), Delta Dental (ticker DLT), Delta Electronics (ticker DLT), etc. Please specify the ticker or full company name.",
+          "Which \u201cDelta\u201d are you referring to? Options include Delta Air Lines (ticker DAL), Delta Dental (ticker DLT), Delta Electronics (ticker DLT), etc. Please provide the ticker or full company name."
+        ],
+        "needs_manual_review": true,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 0.0,
+        "latency_mean_s": 385.9696666666666
+      },
+      "amb_nvda_profitable": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          5,
+          0,
+          0
+        ],
+        "latencies": [
+          401.957,
+          3169.635,
+          4697.866
+        ],
+        "answers": [
+          "NVIDIA\u2019s net income for its most recent fiscal year (ended\u202fJan\u202f28\u202f2024) was **$29.76\u202fbillion**\u3010get_financial_concept\u3011. This figure comes from the DEF\u202f14A filed on\u202fMay\u202f12\u202f2026 and reflects the company\u2019s FY\u202f2024 results.",
+          "",
+          ""
+        ],
+        "needs_manual_review": true,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 1.6666666666666667,
+        "latency_mean_s": 2756.4860000000003
+      },
+      "amb_msft_debt": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          3,
+          0,
+          0
+        ],
+        "latencies": [
+          2493.717,
+          2214.577,
+          3422.621
+        ],
+        "answers": [
+          "Microsoft reported total liabilities of **$205.753\u202fbillion** for fiscal year\u202f2023 (ended\u202fJune\u202f30\u202f2023), as disclosed in its 10\u2011K filed on\u202fJuly\u202f30\u202f2024. This figure is the only debt\u2011related number available from the EDGAR data for that period.",
+          "",
+          ""
+        ],
+        "needs_manual_review": true,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 1.0,
+        "latency_mean_s": 2710.3050000000003
+      },
+      "ref_stripe_private": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          0,
+          0,
+          0
+        ],
+        "latencies": [
+          1057.624,
+          0.767,
+          1.145
+        ],
+        "answers": [
+          "I\u2019m sorry, but Stripe is a private company and does not file reports with the SEC, so there is no EDGAR filing from which to obtain a revenue figure.",
+          "I\u2019m sorry, but Stripe is a private company and does not file reports with the SEC, so there is no EDGAR filing from which to obtain a revenue figure.",
+          "I\u2019m sorry, but Stripe is a private company and does not file with the SEC, so there is no EDGAR filing from which to pull a revenue figure."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 0.0,
+        "latency_mean_s": 353.1786666666667
+      },
+      "ref_future_2027": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          0,
+          0,
+          0
+        ],
+        "latencies": [
+          1454.091,
+          2026.812,
+          584.826
+        ],
+        "answers": [
+          "",
+          "",
+          "I\u2019m sorry, but I can\u2019t provide a forecast for Apple\u2019s fiscal\u202f2027 revenue. The EDGAR tools only return figures that have already been reported in filed documents, and Apple has not yet filed a 10\u2011K or 10\u2011Q for FY2027."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 0.0,
+        "latency_mean_s": 1355.243
+      },
+      "ref_stock_price": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          0,
+          0,
+          0
+        ],
+        "latencies": [
+          0.798,
+          0.647,
+          1059.149
+        ],
+        "answers": [
+          "I\u2019m sorry, but I can\u2019t provide real\u2011time stock prices.",
+          "I\u2019m sorry, but I can\u2019t provide real\u2011time stock prices.",
+          "I\u2019m sorry, but I can\u2019t provide real\u2011time stock prices."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 0.0,
+        "latency_mean_s": 353.5313333333333
+      },
+      "ref_fts_1998": {
+        "passes": 3,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          1,
+          1,
+          1
+        ],
+        "latencies": [
+          1804.791,
+          1925.989,
+          2136.024
+        ],
+        "answers": [
+          "EDGAR\u2019s full\u2011text index starts in 2001, so filings from 1998 cannot be searched by keyword. To find \u201cY2K remediation\u201d mentions in 1998, you\u2019ll need to locate the relevant 10\u2011K or 10\u2011Q filings manually (e.g., via `list_filings`) and then read the text yourself.",
+          "EDGAR\u2019s full\u2011text index starts in 2001, so filings from 1998 cannot be searched by keyword. To find \u201cY2K remediation\u201d mentions in 1998, you\u2019ll need to locate the relevant 10\u2011K or 10\u2011Q filings manually (e.g., via `list_filings`) and then read the text yourself.",
+          "EDGAR\u2019s full\u2011text index starts in 2001, so filings from 1998 cannot be searched by keyword. To find \u201cY2K remediation\u201d mentions in 1998, you\u2019ll need to locate the relevant 10\u2011K or 10\u2011Q filings manually (e.g., via\u202flist_filings) and then read the text yourself."
+        ],
+        "needs_manual_review": false,
+        "pass_rate": 1.0,
+        "tool_calls_mean": 1.0,
+        "latency_mean_s": 1955.6013333333333
+      },
+      "rst_tsla_revision": {
+        "passes": 1,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          0,
+          3,
+          3
+        ],
+        "latencies": [
+          2295.083,
+          74.734,
+          53.974634811000215
+        ],
+        "answers": [
+          "",
+          "Yes. Tesla\u2019s FY\u202f2024 revenue was revised in a later filing.  \n- **Original figure** \u2013 $81.462\u202fbillion, reported in the FY\u202f2024 10\u2011K filed\u202f2025\u201101\u201130 (accession\u202f0001628280\u201125\u2011003063).  \n- **Revised figure** \u2013 $97.690\u202fbillion, reported in the FY\u202f2024 10\u2011K/A filed\u202f2025\u201104\u201130 (accession\u202f0001104659\u201125\u2011042659).",
+          "No.  A query of Tesla\u2019s revenue (us\u2011gaap:RevenueFromContractWithCustomerExcludingAssessedTax) shows three filings for FY\u202f2023, FY\u202f2022, and FY\u202f2021, all marked `restated: false` in the tool\u2019s output.  Since none of the figures are flagged as restated, Tesla\u2019s previously reported annual revenue has not been revised in a later filing."
+        ],
+        "needs_manual_review": true,
+        "pass_rate": 0.3333333333333333,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 807.930544937
+      },
+      "rst_amzn_fy22": {
+        "passes": 0,
+        "attempts": 3,
+        "accuracy_applicable": false,
+        "tool_calls": [
+          0,
+          3,
+          3
+        ],
+        "latencies": [
+          2220.71,
+          86.288,
+          290.4352791169995
+        ],
+        "answers": [
+          "",
+          "",
+          ""
+        ],
+        "needs_manual_review": true,
+        "pass_rate": 0.0,
+        "tool_calls_mean": 2.0,
+        "latency_mean_s": 865.8110930389998
+      }
+    },
+    "by_category": {
+      "ambiguous": {
+        "pass_rate_pct": 20.0,
+        "questions": 5
+      },
+      "comparison": {
+        "pass_rate_pct": 44.44444444444444,
+        "questions": 6
+      },
+      "lookup": {
+        "pass_rate_pct": 83.33333333333334,
+        "questions": 8
+      },
+      "refusal": {
+        "pass_rate_pct": 50.0,
+        "questions": 4
+      },
+      "restatement": {
+        "pass_rate_pct": 16.666666666666664,
+        "questions": 2
+      }
+    }
+  },
+  "attempts": [
+    {
+      "question_id": "rev_nvda_fy24",
+      "run": 1,
+      "answer": "I couldn\u2019t find a revenue figure for NVIDIA\u2019s fiscal year\u202f2024. The most recent annual revenue data available is for FY\u202f2022 (reported in the 2022 10\u2011K, filed\u202f2022\u201103\u201118) of\u202f$26.9\u202fbillion. A FY\u202f2024 filing has not yet been submitted to the SEC.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVIDIA"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 16.873,
+      "input_tokens": 11398,
+      "output_tokens": 357,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 3,
+        "must_mention_hits": [
+          "fiscal",
+          "2024"
+        ],
+        "must_mention_total": 3,
+        "must_mention_ok": false,
+        "accuracy_applicable": true,
+        "accurate": false,
+        "numbers_in_answer": [
+          2024.0,
+          2022.0,
+          2022.0,
+          10.0,
+          2022.0,
+          3.0,
+          18.0,
+          26900000000.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "rev_aapl_fy24",
+      "run": 1,
+      "answer": "Apple\u2019s total net sales for fiscal\u202f2024 were **$391.0\u202fbillion** (reported in the 10\u2011K for FY\u202f2024, period ending\u202f2024\u201109\u201128).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "net_sales",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 27.764,
+      "input_tokens": 7820,
+      "output_tokens": 212,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "fiscal",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          391000000000.0,
+          10.0,
+          2024.0,
+          2024.0,
+          9.0,
+          28.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ni_msft_fy24",
+      "run": 1,
+      "answer": "Microsoft\u2019s net income for fiscal year\u202f2024 was **$88.14\u202fbillion** (US\u202f$88,136,000,000).  \nThis figure comes from the FY2024 10\u2011K (period ended\u202f2024\u201106\u201130, filed\u202f2026\u201107\u201129).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "net_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 63.46,
+      "input_tokens": 7797,
+      "output_tokens": 235,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "fiscal",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          88140000000.0,
+          88136000000.0,
+          10.0,
+          2024.0,
+          6.0,
+          30.0,
+          2026.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "assets_amzn_fy24",
+      "run": 1,
+      "answer": "Amazon\u2019s total assets at the end of fiscal\u202f2024 were **$624.9\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f2024\u201112\u201131).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Amazon"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1018724",
+            "concept": "total_assets",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 56.117,
+      "input_tokens": 7717,
+      "output_tokens": 203,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          624900000000.0,
+          10.0,
+          2024.0,
+          2024.0,
+          12.0,
+          31.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "rnd_nvda_fy24",
+      "run": 1,
+      "answer": "NVIDIA spent **$8.675\u202fbillion** on research and development in fiscal\u202f2024.  \nThis figure comes from the company\u2019s 10\u2011K for FY\u202f2024 (period ended\u202f2024\u201101\u201128, filed\u202f2026\u201102\u201125).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVIDIA"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "rnd_expense",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 43.338,
+      "input_tokens": 7557,
+      "output_tokens": 241,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "research",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          8675000000.0,
+          2024.0,
+          10.0,
+          2024.0,
+          2024.0,
+          1.0,
+          28.0,
+          2026.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cash_tsla_fy24",
+      "run": 1,
+      "answer": "Tesla had **$16.139\u202fbillion** in cash and cash equivalents at the end of FY\u202f2024 (period end\u202f2024\u201112\u201131). This figure comes from the 10\u2011K filed on\u202f2026\u201101\u201129 (accession\u202f0001628280\u201126\u2011003952).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Tesla"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1318605",
+            "concept": "cash",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 28.811,
+      "input_tokens": 7721,
+      "output_tokens": 239,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          16139000000.0,
+          2024.0,
+          2024.0,
+          12.0,
+          31.0,
+          10.0,
+          2026.0,
+          1.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "opinc_aapl_fy24",
+      "run": 1,
+      "answer": "Apple\u2019s operating income for fiscal\u202f2024 was **$123.22\u202fbillion** (US\u202f$123,216,000,000).  \nThis figure comes from the FY\u202f2024 10\u2011K filed on\u202f2025\u201110\u201131 (accession\u202f0000320193\u201125\u2011000079), covering the period ended\u202f2024\u201109\u201128.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "operating_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 61.612,
+      "input_tokens": 7804,
+      "output_tokens": 260,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "operating income",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          123220000000.0,
+          123216000000.0,
+          2024.0,
+          10.0,
+          2025.0,
+          10.0,
+          31.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "liab_msft_fy24",
+      "run": 1,
+      "answer": "Microsoft\u2019s total liabilities at the end of fiscal\u202f2024 were **$243.686\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f2024\u201106\u201130, filed 2025\u201107\u201130).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "total_liabilities",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 45.506,
+      "input_tokens": 7867,
+      "output_tokens": 243,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          243686000000.0,
+          10.0,
+          2024.0,
+          2024.0,
+          6.0,
+          30.0,
+          2025.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_nvda_aapl_rev_fy24",
+      "run": 1,
+      "answer": "NVIDIA has not yet filed a 10\u2011K for fiscal year\u202f2024, so its revenue for that year is not available in EDGAR.  \nApple Inc. reported total revenue of **$391.035\u202fbillion** for FY\u202f2024 (period ended\u202f2024\u201109\u201128, 10\u2011K filed\u202f2025\u201110\u201131).",
+      "tool_calls": [
+        {
+          "name": "compare_companies",
+          "arguments": {
+            "companies": [
+              "NVDA",
+              "AAPL"
+            ],
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "period": "annual"
+          }
+        },
+        {
+          "name": "list_filings",
+          "arguments": {
+            "cik": "1045810",
+            "form": "10-K",
+            "limit": 5
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "AAPL"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "320193",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 183.55,
+      "input_tokens": 29927,
+      "output_tokens": 1032,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 6,
+        "must_mention_hits": [
+          "fiscal year"
+        ],
+        "must_mention_total": 4,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_msft_aapl_ni_fy24",
+      "run": 1,
+      "answer": "Apple\u2019s fiscal\u202f2024 net income was **$93.736\u202fbillion** (10\u2011K, FY\u202f2024 ended\u202fSep\u202f28\u202f2024, filed\u202fOct\u202f31\u202f2025).  \nMicrosoft\u2019s fiscal\u202f2024 net income was **$88.136\u202fbillion** (10\u2011K, FY\u202f2024 ended\u202fJun\u202f30\u202f2024, filed\u202fJul\u202f29\u202f2026).  \n\nThus Apple made more money in fiscal\u202f2024.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "net_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "320193",
+            "concept": "net_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 60.656,
+      "input_tokens": 15020,
+      "output_tokens": 435,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 4,
+        "must_mention_hits": [
+          "net income",
+          "fiscal"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_tsla_nvda_rnd_fy24",
+      "run": 1,
+      "answer": "The 2024 R&D expense figures are not directly comparable because the fiscal years end 338\u202fdays apart.  \n- NVIDIA\u202fCorp. FY\u202f2024 (ended\u202f2024\u201101\u201128) reported **$8.675\u202fbillion** in R&D expense (10\u2011K, filed\u202f2026\u201102\u201125, tag\u202fus\u2011gaap:ResearchAndDevelopmentExpense).  \n- Tesla,\u202fInc. FY\u202f2024 (ended\u202f2024\u201112\u201131) reported **$4.540\u202fbillion** in R&D expense (10\u2011K, filed\u202f2026\u201101\u201129, tag\u202fus\u2011gaap:ResearchAndDevelopmentExpense).",
+      "tool_calls": [
+        {
+          "name": "compare_companies",
+          "arguments": {
+            "companies": [
+              "TSLA",
+              "NVDA"
+            ],
+            "concept": "rnd_expense",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 23.604,
+      "input_tokens": 5177,
+      "output_tokens": 262,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 1,
+        "must_mention_hits": [
+          "research",
+          "fiscal"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_amzn_msft_assets_fy24",
+      "run": 1,
+      "answer": "Amazon\u2019s total assets for FY\u202f2024 were **$624.9\u202fbillion** (10\u2011K filed 2026\u201102\u201106, period end\u202f2024\u201112\u201131).  \nMicrosoft\u2019s total assets for FY\u202f2024 were **$512.2\u202fbillion** (10\u2011K filed 2025\u201107\u201130, period end\u202f2024\u201106\u201130).  \n\nBecause Microsoft\u2019s fiscal year ends 184\u202fdays before Amazon\u2019s, the two figures cover different time periods and are not directly comparable.",
+      "tool_calls": [
+        {
+          "name": "compare_companies",
+          "arguments": {
+            "companies": [
+              "AMZN",
+              "MSFT"
+            ],
+            "concept": "total_assets",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 25.525,
+      "input_tokens": 5210,
+      "output_tokens": 280,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 1,
+        "must_mention_hits": [
+          "total assets",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_five_rev_fy24",
+      "run": 1,
+      "answer": "**Fiscal\u20112024 revenue (USD)** \u2013 largest first (note the fiscal\u2011year end dates differ, so the figures are not directly comparable):\n\n| Company | Revenue | Fiscal\u2011year end |\n|---------|---------|-----------------|\n| Amazon\u202fInc. | **$637.959\u202fB** | 2024\u201112\u201131 (10\u2011K filed\u202f2026\u201102\u201106) |\n| Apple\u202fInc. | **$391.035\u202fB** | 2024\u201109\u201128 (10\u2011K filed\u202f2025\u201110\u201131) |\n| Microsoft\u202fCorp. | **$245.122\u202fB** | 2024\u201106\u201130 (10\u2011K filed\u202f2026\u201107\u201129) |\n| Tesla\u202fInc. | **$97.690\u202fB** | 2024\u201112\u201131 (10\u2011K filed\u202f2026\u201101\u201129) |\n\n*No fiscal\u20112024 revenue is available for NVIDIA\u202fCorp.*  \n\n**Caveat** \u2013 the fiscal\u2011year ends are 184\u202fdays apart (Microsoft ends 2024\u201106\u201130, Amazon ends 2024\u201112\u201131), so the periods covered differ. The figures above are taken from each company\u2019s 10\u2011K for FY\u202f2024 and are reported under the XBRL tag `us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax`.",
+      "tool_calls": [
+        {
+          "name": "compare_companies",
+          "arguments": {
+            "companies": [
+              "AAPL",
+              "MSFT",
+              "NVDA",
+              "AMZN",
+              "TSLA"
+            ],
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 44.577,
+      "input_tokens": 5624,
+      "output_tokens": 506,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 1,
+        "must_mention_hits": [
+          "fiscal",
+          "revenue"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_nvda_tsla_growth",
+      "run": 1,
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVIDIA"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Tesla"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "list_filings",
+          "arguments": {
+            "cik": "1045810",
+            "form": "10-K",
+            "limit": 5
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "FY"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "fiscal_year": 2025,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 219.06,
+      "input_tokens": 32216,
+      "output_tokens": 1055,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 8,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "amb_aapl_margins",
+      "run": 1,
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple Inc"
+          }
+        },
+        {
+          "name": "list_filings",
+          "arguments": {
+            "cik": "0000320193",
+            "form": "10-K",
+            "limit": 5
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "gross_profit",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "gross_profit",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "revenue",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "gross_profit",
+            "fiscal_year": 2022,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "revenue",
+            "fiscal_year": 2022,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 225.275,
+      "input_tokens": 35346,
+      "output_tokens": 658,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 8,
+        "must_mention_hits": [],
+        "must_mention_total": 1,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "amb_apple_name",
+      "run": 1,
+      "answer": "Apple\u2019s total revenue for fiscal\u202f2023 (ended\u202fSeptember\u202f30,\u202f2023) was **$383.285\u202fbillion**\u3010get_financial_concept\u3011. This figure comes from the company\u2019s 10\u2011K filed on\u202fOctober\u202f31,\u202f2025 (accession\u202f0000320193\u201125\u2011000079).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "revenue",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 42.261,
+      "input_tokens": 7918,
+      "output_tokens": 365,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "amb_delta_name",
+      "run": 1,
+      "answer": "Which \u201cDelta\u201d are you referring to? Options include Delta Air Lines (ticker DAL), Delta Dental (ticker DLT), Delta Electronics (ticker DLT), etc. Please specify the ticker or full company name.",
+      "tool_calls": [],
+      "latency_s": 5.691,
+      "input_tokens": 2232,
+      "output_tokens": 82,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": true,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "amb_nvda_profitable",
+      "run": 1,
+      "answer": "NVIDIA\u2019s net income for its most recent fiscal year (ended\u202fJan\u202f28\u202f2024) was **$29.76\u202fbillion**\u3010get_financial_concept\u3011. This figure comes from the DEF\u202f14A filed on\u202fMay\u202f12\u202f2026 and reflects the company\u2019s FY\u202f2024 results.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVIDIA"
+          }
+        },
+        {
+          "name": "list_filings",
+          "arguments": {
+            "cik": "0001045810",
+            "form": "10-K",
+            "limit": 5
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0001045810",
+            "concept": "net_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0001045810",
+            "concept": "net_income",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_filing_section",
+          "arguments": {
+            "accession_number": "0001045810-24-000029",
+            "cik": "0001045810",
+            "max_chars": 20000,
+            "section": "financial_statements"
+          }
+        }
+      ],
+      "latency_s": 401.957,
+      "input_tokens": 23445,
+      "output_tokens": 1503,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 5,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "amb_msft_debt",
+      "run": 1,
+      "answer": "Microsoft reported total liabilities of **$205.753\u202fbillion** for fiscal year\u202f2023 (ended\u202fJune\u202f30\u202f2023), as disclosed in its 10\u2011K filed on\u202fJuly\u202f30\u202f2024. This figure is the only debt\u2011related number available from the EDGAR data for that period.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "total_liabilities",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "long_term_debt",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 2493.717,
+      "input_tokens": 11112,
+      "output_tokens": 556,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 3,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "ref_stripe_private",
+      "run": 1,
+      "answer": "I\u2019m sorry, but Stripe is a private company and does not file reports with the SEC, so there is no EDGAR filing from which to obtain a revenue figure.",
+      "tool_calls": [],
+      "latency_s": 1057.624,
+      "input_tokens": 2235,
+      "output_tokens": 159,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": true,
+        "should_refuse": true,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [
+          "not",
+          "SEC"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ref_future_2027",
+      "run": 1,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 1454.091,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": true,
+        "refusal_correct": false,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "ref_stock_price",
+      "run": 1,
+      "answer": "I\u2019m sorry, but I can\u2019t provide real\u2011time stock prices.",
+      "tool_calls": [],
+      "latency_s": 0.798,
+      "input_tokens": 2233,
+      "output_tokens": 48,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": true,
+        "refusal_correct": false,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 1,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ref_fts_1998",
+      "run": 1,
+      "answer": "EDGAR\u2019s full\u2011text index starts in 2001, so filings from 1998 cannot be searched by keyword. To find \u201cY2K remediation\u201d mentions in 1998, you\u2019ll need to locate the relevant 10\u2011K or 10\u2011Q filings manually (e.g., via `list_filings`) and then read the text yourself.",
+      "tool_calls": [
+        {
+          "name": "search_full_text",
+          "arguments": {
+            "date_from": "1998-01-01",
+            "date_to": "1998-12-31",
+            "forms": [
+              "10-K",
+              "10-Q"
+            ],
+            "limit": 10,
+            "query": "\"Y2K remediation\""
+          }
+        }
+      ],
+      "latency_s": 1804.791,
+      "input_tokens": 4725,
+      "output_tokens": 180,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": true,
+        "should_refuse": true,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 1,
+        "must_mention_hits": [
+          "2001"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "rst_tsla_revision",
+      "run": 1,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2295.083,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 1,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "disclosed_restatement": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "rst_amzn_fy22",
+      "run": 1,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2220.71,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "disclosed_restatement": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "rev_nvda_fy24",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 3388.163,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 3,
+        "must_mention_ok": false,
+        "accuracy_applicable": true,
+        "accurate": false,
+        "numbers_in_answer": [],
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "rev_aapl_fy24",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2031.788,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": true,
+        "accurate": false,
+        "numbers_in_answer": [],
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "ni_msft_fy24",
+      "run": 2,
+      "answer": "Microsoft\u2019s net income for fiscal year\u202f2024 was **$88.14\u202fbillion** (US\u202f$88,136,000,000).  \nThis figure comes from the FY2024 10\u2011K (period ended\u202f2024\u201106\u201130, filed\u202f2026\u201107\u201129).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "net_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 2086.743,
+      "input_tokens": 7797,
+      "output_tokens": 235,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "fiscal",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          88140000000.0,
+          88136000000.0,
+          10.0,
+          2024.0,
+          6.0,
+          30.0,
+          2026.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "assets_amzn_fy24",
+      "run": 2,
+      "answer": "Amazon\u2019s total assets at the end of fiscal\u202f2024 were **$624.9\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f2024\u201112\u201131).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Amazon"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1018724",
+            "concept": "total_assets",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 6.532,
+      "input_tokens": 7717,
+      "output_tokens": 203,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          624900000000.0,
+          10.0,
+          2024.0,
+          2024.0,
+          12.0,
+          31.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "rnd_nvda_fy24",
+      "run": 2,
+      "answer": "NVIDIA spent **$8.675\u202fbillion** on research and development in fiscal\u202f2024.  \nThis figure comes from the company\u2019s 10\u2011K for FY\u202f2024 (period ended\u202fJanuary\u202f28,\u202f2024, filed\u202fFebruary\u202f25,\u202f2026).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVIDIA"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0001045810",
+            "concept": "rnd_expense",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 33.498,
+      "input_tokens": 7556,
+      "output_tokens": 239,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "research",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          8675000000.0,
+          2024.0,
+          10.0,
+          2024.0,
+          28.0,
+          2024.0,
+          25.0,
+          2026.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cash_tsla_fy24",
+      "run": 2,
+      "answer": "Tesla had **$16.139\u202fbillion** in cash and cash equivalents at the end of FY\u202f2024 (period end\u202f2024\u201112\u201131). This figure comes from the 10\u2011K filed on\u202f2026\u201101\u201129 (accession\u202f0001628280\u201126\u2011003952).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Tesla"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1318605",
+            "concept": "cash",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 59.155,
+      "input_tokens": 7721,
+      "output_tokens": 242,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          16139000000.0,
+          2024.0,
+          2024.0,
+          12.0,
+          31.0,
+          10.0,
+          2026.0,
+          1.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "opinc_aapl_fy24",
+      "run": 2,
+      "answer": "Apple\u2019s operating income for fiscal\u202f2024 was **$123.22\u202fbillion** (US\u202f$123,216,000,000).  \nThis figure comes from the 10\u2011K filed on\u202fOctober\u202f31,\u202f2025 (accession\u202f0000320193\u201125\u2011000079) covering the period ended\u202fSeptember\u202f28,\u202f2024.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "operating_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 61.362,
+      "input_tokens": 7793,
+      "output_tokens": 254,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "operating income",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          123220000000.0,
+          123216000000.0,
+          10.0,
+          31.0,
+          2025.0,
+          320193.0,
+          25.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "liab_msft_fy24",
+      "run": 2,
+      "answer": "Microsoft\u2019s total liabilities at the end of fiscal\u202f2024 were **$243.686\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f2024\u201106\u201130, filed 2025\u201107\u201130).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "total_liabilities",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 61.035,
+      "input_tokens": 7867,
+      "output_tokens": 243,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          243686000000.0,
+          10.0,
+          2024.0,
+          2024.0,
+          6.0,
+          30.0,
+          2025.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_nvda_aapl_rev_fy24",
+      "run": 2,
+      "answer": "Apple\u2019s fiscal\u202f2024 revenue was **$391.035\u202fbillion** (10\u2011K, period ended\u202f2024\u201109\u201128, filed\u202f2025\u201110\u201131).  \nNVIDIA\u2019s fiscal\u202f2024 revenue is not available in the EDGAR data set (the 10\u2011K for FY\u202f2024 ends\u202f2024\u201101\u201128, but the revenue figure is missing).",
+      "tool_calls": [
+        {
+          "name": "compare_companies",
+          "arguments": {
+            "companies": [
+              "NVDA",
+              "AAPL"
+            ],
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "list_filings",
+          "arguments": {
+            "cik": "1045810",
+            "form": "10-K",
+            "limit": 5
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "period": "annual"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "AAPL"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "320193",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 237.961,
+      "input_tokens": 30817,
+      "output_tokens": 1080,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 6,
+        "must_mention_hits": [],
+        "must_mention_total": 4,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_msft_aapl_ni_fy24",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 1634.969,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "cmp_tsla_nvda_rnd_fy24",
+      "run": 2,
+      "answer": "The 2024 R&D expense figures are not directly comparable because the fiscal years end 338\u202fdays apart. NVIDIA\u2019s FY\u202f2024 (ended\u202f2024\u201101\u201128) reported\u202f$8.675\u202fbillion in R&D expense (10\u2011K filed\u202f2026\u201102\u201125, tag\u202fus\u2011gaap:ResearchAndDevelopmentExpense). Tesla\u2019s FY\u202f2024 (ended\u202f2024\u201112\u201131) reported\u202f$4.540\u202fbillion in R&D expense (10\u2011K filed\u202f2026\u201101\u201129, tag\u202fus\u2011gaap:ResearchAndDevelopmentExpense).",
+      "tool_calls": [
+        {
+          "name": "compare_companies",
+          "arguments": {
+            "companies": [
+              "TSLA",
+              "NVDA"
+            ],
+            "concept": "rnd_expense",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 1017.368,
+      "input_tokens": 5177,
+      "output_tokens": 249,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 1,
+        "must_mention_hits": [
+          "research",
+          "fiscal"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_amzn_msft_assets_fy24",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2396.076,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "cmp_five_rev_fy24",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 4719.509,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "cmp_nvda_tsla_growth",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 3776.698,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "amb_aapl_margins",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2264.118,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 1,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "amb_apple_name",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2098.651,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "amb_delta_name",
+      "run": 2,
+      "answer": "Which \u201cDelta\u201d are you referring to? Options include Delta Air Lines (ticker DAL), Delta Dental (ticker DLT), Delta Electronics (ticker DLT), etc. Please specify the ticker or full company name.",
+      "tool_calls": [],
+      "latency_s": 0.646,
+      "input_tokens": 2232,
+      "output_tokens": 82,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": true,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "amb_nvda_profitable",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 3169.635,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "amb_msft_debt",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2214.577,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "ref_stripe_private",
+      "run": 2,
+      "answer": "I\u2019m sorry, but Stripe is a private company and does not file reports with the SEC, so there is no EDGAR filing from which to obtain a revenue figure.",
+      "tool_calls": [],
+      "latency_s": 0.767,
+      "input_tokens": 2235,
+      "output_tokens": 159,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": true,
+        "should_refuse": true,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [
+          "not",
+          "SEC"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ref_future_2027",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2026.812,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": true,
+        "refusal_correct": false,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "ref_stock_price",
+      "run": 2,
+      "answer": "I\u2019m sorry, but I can\u2019t provide real\u2011time stock prices.",
+      "tool_calls": [],
+      "latency_s": 0.647,
+      "input_tokens": 2233,
+      "output_tokens": 48,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": true,
+        "refusal_correct": false,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 1,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ref_fts_1998",
+      "run": 2,
+      "answer": "EDGAR\u2019s full\u2011text index starts in 2001, so filings from 1998 cannot be searched by keyword. To find \u201cY2K remediation\u201d mentions in 1998, you\u2019ll need to locate the relevant 10\u2011K or 10\u2011Q filings manually (e.g., via `list_filings`) and then read the text yourself.",
+      "tool_calls": [
+        {
+          "name": "search_full_text",
+          "arguments": {
+            "date_from": "1998-01-01",
+            "date_to": "1998-12-31",
+            "forms": [
+              "10-K",
+              "10-Q"
+            ],
+            "limit": 10,
+            "query": "\"Y2K remediation\""
+          }
+        }
+      ],
+      "latency_s": 1925.989,
+      "input_tokens": 4725,
+      "output_tokens": 180,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": true,
+        "should_refuse": true,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 1,
+        "must_mention_hits": [
+          "2001"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "rst_tsla_revision",
+      "run": 2,
+      "answer": "Yes. Tesla\u2019s FY\u202f2024 revenue was revised in a later filing.  \n- **Original figure** \u2013 $81.462\u202fbillion, reported in the FY\u202f2024 10\u2011K filed\u202f2025\u201101\u201130 (accession\u202f0001628280\u201125\u2011003063).  \n- **Revised figure** \u2013 $97.690\u202fbillion, reported in the FY\u202f2024 10\u2011K/A filed\u202f2025\u201104\u201130 (accession\u202f0001104659\u201125\u2011042659).",
+      "tool_calls": [
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0001318605",
+            "concept": "revenue",
+            "fiscal_year": 2022,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1318605",
+            "concept": "revenue",
+            "period": "annual"
+          }
+        },
+        {
+          "name": "list_filings",
+          "arguments": {
+            "cik": "1318605",
+            "form": "10-K",
+            "limit": 20
+          }
+        }
+      ],
+      "latency_s": 74.734,
+      "input_tokens": 16560,
+      "output_tokens": 1621,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 3,
+        "must_mention_hits": [
+          "filed"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "disclosed_restatement": true,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "rst_amzn_fy22",
+      "run": 2,
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "AMZN"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1018724",
+            "concept": "revenue",
+            "fiscal_year": 2022,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "list_filings",
+          "arguments": {
+            "cik": "1018724",
+            "form": "10-K",
+            "limit": 5
+          }
+        }
+      ],
+      "latency_s": 86.288,
+      "input_tokens": 11965,
+      "output_tokens": 1767,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 3,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "disclosed_restatement": false,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "rev_nvda_fy24",
+      "run": 3,
+      "answer": "I couldn\u2019t find a revenue figure for NVIDIA\u2019s fiscal year\u202f2024 in the EDGAR data set. The most recent fiscal\u2011year revenue the tool can retrieve is for FY\u202f2022, which was $26.9\u202fbillion (reported in the 2022 10\u2011K filed 2022\u201103\u201118, covering 2021\u201102\u201101\u202f\u2013\u202f2022\u201101\u201130).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVIDIA"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "revenue",
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 29.289,
+      "input_tokens": 11407,
+      "output_tokens": 562,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 3,
+        "must_mention_hits": [
+          "fiscal",
+          "2024"
+        ],
+        "must_mention_total": 3,
+        "must_mention_ok": false,
+        "accuracy_applicable": true,
+        "accurate": false,
+        "numbers_in_answer": [
+          2024.0,
+          2022.0,
+          26900000000.0,
+          2022.0,
+          10.0,
+          2022.0,
+          3.0,
+          18.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "rev_aapl_fy24",
+      "run": 3,
+      "answer": "Apple\u2019s total net sales for fiscal\u202f2024 were **$391.0\u202fbillion** (reported in the 10\u2011K for FY\u202f2024, period ending\u202f2024\u201109\u201128).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "net_sales",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 60.812,
+      "input_tokens": 7820,
+      "output_tokens": 212,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "fiscal",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          391000000000.0,
+          10.0,
+          2024.0,
+          2024.0,
+          9.0,
+          28.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ni_msft_fy24",
+      "run": 3,
+      "answer": "Microsoft\u2019s net income for fiscal year\u202f2024 was **$88.14\u202fbillion** (US\u202f$88,136,000,000).  \nThis figure comes from the FY2024 10\u2011K filed on 2026\u201107\u201129, covering the period ended\u202f2024\u201106\u201130.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "net_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 60.287,
+      "input_tokens": 7797,
+      "output_tokens": 227,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "fiscal",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          88140000000.0,
+          88136000000.0,
+          10.0,
+          2026.0,
+          7.0,
+          29.0,
+          2024.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "assets_amzn_fy24",
+      "run": 3,
+      "answer": "Amazon\u2019s total assets at the end of FY\u202f2024 were **$624.9\u202fbillion** (reported in the 10\u2011K filed 2026\u201102\u201106, fiscal year\u202f2024, period end\u202f2024\u201112\u201131).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Amazon"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1018724",
+            "concept": "total_assets",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 60.061,
+      "input_tokens": 7717,
+      "output_tokens": 216,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          624900000000.0,
+          10.0,
+          2026.0,
+          2.0,
+          6.0,
+          2024.0,
+          2024.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "rnd_nvda_fy24",
+      "run": 3,
+      "answer": "NVIDIA spent **$8.675\u202fbillion** on research and development in fiscal\u202f2024.  \nThis figure comes from the 10\u2011K filed on\u202fFebruary\u202f25,\u202f2026 for the fiscal year ending\u202fJanuary\u202f28,\u202f2024 (FY\u202f2024).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVIDIA"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "rnd_expense",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 44.495,
+      "input_tokens": 7555,
+      "output_tokens": 240,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "research",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          8675000000.0,
+          2024.0,
+          10.0,
+          25.0,
+          2026.0,
+          28.0,
+          2024.0,
+          2024.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cash_tsla_fy24",
+      "run": 3,
+      "answer": "Tesla had **$16.139\u202fbillion** in cash and cash equivalents at the end of FY\u202f2024 (period end\u202f2024\u201112\u201131). This figure comes from the 10\u2011K filed 2026\u201101\u201129, reporting FY\u202f2024.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Tesla"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1318605",
+            "concept": "cash",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 58.314,
+      "input_tokens": 7721,
+      "output_tokens": 260,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          16139000000.0,
+          2024.0,
+          2024.0,
+          12.0,
+          31.0,
+          10.0,
+          2026.0,
+          1.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "opinc_aapl_fy24",
+      "run": 3,
+      "answer": "Apple\u2019s operating income for fiscal\u202f2024 was **$123.22\u202fbillion** (US\u202f$123,216,000,000).  \nThis figure comes from the 10\u2011K filed on\u202fOctober\u202f31,\u202f2025 (accession\u202f0000320193\u201125\u2011000079) covering the period ended\u202fSeptember\u202f28,\u202f2024.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "operating_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 60.74,
+      "input_tokens": 7793,
+      "output_tokens": 254,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "operating income",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          123220000000.0,
+          123216000000.0,
+          10.0,
+          31.0,
+          2025.0,
+          320193.0,
+          25.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "liab_msft_fy24",
+      "run": 3,
+      "answer": "Microsoft\u2019s total liabilities at the end of fiscal\u202f2024 were **$243.686\u202fbillion** (10\u2011K, fiscal year\u202f2024, period end\u202f2024\u201106\u201130, filed 2025\u201107\u201130).",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "total_liabilities",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 64.031,
+      "input_tokens": 7867,
+      "output_tokens": 250,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [
+          "2024"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": true,
+        "accurate": true,
+        "numbers_in_answer": [
+          2024.0,
+          243686000000.0,
+          10.0,
+          2024.0,
+          2024.0,
+          6.0,
+          30.0,
+          2025.0
+        ],
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_nvda_aapl_rev_fy24",
+      "run": 3,
+      "answer": "Apple\u2019s fiscal\u202f2024 revenue was **$391.0\u202fbillion** (10\u2011K, FY\u202f2024, period\u202f2023\u201110\u201101\u202fto\u202f2024\u201109\u201128, filed\u202f2025\u201110\u201131). NVIDIA has not yet filed a 10\u2011K for fiscal\u202f2024, so no revenue figure is available for that year.",
+      "tool_calls": [
+        {
+          "name": "compare_companies",
+          "arguments": {
+            "companies": [
+              "NVDA",
+              "AAPL"
+            ],
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 45.471,
+      "input_tokens": 7977,
+      "output_tokens": 582,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [],
+        "must_mention_total": 4,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_msft_aapl_ni_fy24",
+      "run": 3,
+      "answer": "Apple\u2019s fiscal\u202f2024 net income was **$93.736\u202fbillion** (10\u2011K, FY\u202f2024 ended\u202fSep\u202f28\u202f2024, filed\u202fOct\u202f31\u202f2025).  \nMicrosoft\u2019s fiscal\u202f2024 net income was **$88.136\u202fbillion** (10\u2011K, FY\u202f2024 ended\u202fJun\u202f30\u202f2024, filed\u202fJul\u202f29\u202f2026).  \n\nThus Apple made more money in fiscal\u202f2024.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Microsoft"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "789019",
+            "concept": "net_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "320193",
+            "concept": "net_income",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 116.298,
+      "input_tokens": 15020,
+      "output_tokens": 435,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 4,
+        "must_mention_hits": [
+          "net income",
+          "fiscal"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_tsla_nvda_rnd_fy24",
+      "run": 3,
+      "answer": "Tesla\u2019s FY\u202f2024 research\u2011and\u2011development expense was **$4.54\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f12\u201131\u20112024).  \nNVIDIA\u2019s FY\u202f2024 R&D expense was **$8.675\u202fbillion** (10\u2011K, FY\u202f2024, period end\u202f01\u201128\u20112024).  \n\nBecause the fiscal\u2011year end dates differ by more than 45\u202fdays, the two figures are not directly comparable.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Tesla"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVIDIA"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1318605",
+            "concept": "rnd_expense",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1045810",
+            "concept": "rnd_expense",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 108.422,
+      "input_tokens": 15326,
+      "output_tokens": 781,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 4,
+        "must_mention_hits": [
+          "research",
+          "fiscal"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_amzn_msft_assets_fy24",
+      "run": 3,
+      "answer": "Amazon\u2019s total assets for FY\u202f2024 were **$624.9\u202fbillion** (10\u2011K filed 2026\u201102\u201106, period end\u202f2024\u201112\u201131).  \nMicrosoft\u2019s total assets for FY\u202f2024 were **$512.2\u202fbillion** (10\u2011K filed 2025\u201107\u201130, period end\u202f2024\u201106\u201130).  \n\nBecause Microsoft\u2019s fiscal year ends 184\u202fdays before Amazon\u2019s, the figures cover different time periods and are not directly comparable.",
+      "tool_calls": [
+        {
+          "name": "compare_companies",
+          "arguments": {
+            "companies": [
+              "AMZN",
+              "MSFT"
+            ],
+            "concept": "total_assets",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 39.872,
+      "input_tokens": 5236,
+      "output_tokens": 305,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 1,
+        "must_mention_hits": [
+          "total assets",
+          "2024"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_five_rev_fy24",
+      "run": 3,
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "AAPL"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "MSFT"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "NVDA"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "AMZN"
+          }
+        },
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "TSLA"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000789019",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0001045810",
+            "concept": "revenue",
+            "fiscal_year": 2024,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 177.104,
+      "input_tokens": 25254,
+      "output_tokens": 375,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 8,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "cmp_nvda_tsla_growth",
+      "run": 3,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2894.095,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "amb_aapl_margins",
+      "run": 3,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 2159.999,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 1,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "amb_apple_name",
+      "run": 3,
+      "answer": "Apple Inc.\u2019s total revenue for fiscal year\u202f2023 was **$383.3\u202fbillion** (US\u202f$383,285,000,000).  \nThis figure comes from the company\u2019s 10\u2011K filed on\u202f2025\u201110\u201131, covering the period ended\u202f2023\u201109\u201130.",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Apple"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0000320193",
+            "concept": "revenue",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 2201.373,
+      "input_tokens": 7893,
+      "output_tokens": 294,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 2,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "amb_delta_name",
+      "run": 3,
+      "answer": "Which \u201cDelta\u201d are you referring to? Options include Delta Air Lines (ticker DAL), Delta Dental (ticker DLT), Delta Electronics (ticker DLT), etc. Please provide the ticker or full company name.",
+      "tool_calls": [],
+      "latency_s": 1151.572,
+      "input_tokens": 2232,
+      "output_tokens": 82,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": true,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "amb_nvda_profitable",
+      "run": 3,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 4697.866,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "amb_msft_debt",
+      "run": 3,
+      "answer": "",
+      "tool_calls": [],
+      "latency_s": 3422.621,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 0,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "clarified": false,
+        "needs_manual_review": true,
+        "errored": true
+      },
+      "error": "RuntimeError: provider kept failing after 12 attempts"
+    },
+    {
+      "question_id": "ref_stripe_private",
+      "run": 3,
+      "answer": "I\u2019m sorry, but Stripe is a private company and does not file with the SEC, so there is no EDGAR filing from which to pull a revenue figure.",
+      "tool_calls": [],
+      "latency_s": 1.145,
+      "input_tokens": 2235,
+      "output_tokens": 167,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": true,
+        "should_refuse": true,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [
+          "not",
+          "SEC"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ref_future_2027",
+      "run": 3,
+      "answer": "I\u2019m sorry, but I can\u2019t provide a forecast for Apple\u2019s fiscal\u202f2027 revenue. The EDGAR tools only return figures that have already been reported in filed documents, and Apple has not yet filed a 10\u2011K or 10\u2011Q for FY2027.",
+      "tool_calls": [],
+      "latency_s": 584.826,
+      "input_tokens": 2236,
+      "output_tokens": 233,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": true,
+        "refusal_correct": false,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [
+          "not"
+        ],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ref_stock_price",
+      "run": 3,
+      "answer": "I\u2019m sorry, but I can\u2019t provide real\u2011time stock prices.",
+      "tool_calls": [],
+      "latency_s": 1059.149,
+      "input_tokens": 2233,
+      "output_tokens": 48,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": true,
+        "refusal_correct": false,
+        "cited": false,
+        "tool_calls": 0,
+        "must_mention_hits": [],
+        "must_mention_total": 1,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "ref_fts_1998",
+      "run": 3,
+      "answer": "EDGAR\u2019s full\u2011text index starts in 2001, so filings from 1998 cannot be searched by keyword. To find \u201cY2K remediation\u201d mentions in 1998, you\u2019ll need to locate the relevant 10\u2011K or 10\u2011Q filings manually (e.g., via\u202flist_filings) and then read the text yourself.",
+      "tool_calls": [
+        {
+          "name": "search_full_text",
+          "arguments": {
+            "date_from": "1998-01-01",
+            "date_to": "1998-12-31",
+            "forms": [
+              "10-K",
+              "10-Q"
+            ],
+            "limit": 10,
+            "query": "\"Y2K remediation\""
+          }
+        }
+      ],
+      "latency_s": 2136.024,
+      "input_tokens": 4725,
+      "output_tokens": 180,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": true,
+        "should_refuse": true,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 1,
+        "must_mention_hits": [
+          "2001"
+        ],
+        "must_mention_total": 1,
+        "must_mention_ok": true,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "needs_manual_review": false
+      },
+      "error": null
+    },
+    {
+      "question_id": "rst_tsla_revision",
+      "run": 3,
+      "answer": "No.  A query of Tesla\u2019s revenue (us\u2011gaap:RevenueFromContractWithCustomerExcludingAssessedTax) shows three filings for FY\u202f2023, FY\u202f2022, and FY\u202f2021, all marked `restated: false` in the tool\u2019s output.  Since none of the figures are flagged as restated, Tesla\u2019s previously reported annual revenue has not been revised in a later filing.",
+      "tool_calls": [
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0001318605",
+            "concept": "revenue",
+            "fiscal_year": 2023,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0001318605",
+            "concept": "revenue",
+            "fiscal_year": 2022,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "0001318605",
+            "concept": "revenue",
+            "period": "annual"
+          }
+        }
+      ],
+      "latency_s": 53.975,
+      "input_tokens": 13991,
+      "output_tokens": 1063,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 3,
+        "must_mention_hits": [],
+        "must_mention_total": 1,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "disclosed_restatement": true,
+        "needs_manual_review": true
+      },
+      "error": null
+    },
+    {
+      "question_id": "rst_amzn_fy22",
+      "run": 3,
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "resolve_company",
+          "arguments": {
+            "query": "Amazon"
+          }
+        },
+        {
+          "name": "get_financial_concept",
+          "arguments": {
+            "cik": "1018724",
+            "concept": "revenue",
+            "fiscal_year": 2022,
+            "period": "annual"
+          }
+        },
+        {
+          "name": "list_filings",
+          "arguments": {
+            "cik": "1018724",
+            "form": "10-K",
+            "limit": 10
+          }
+        }
+      ],
+      "latency_s": 290.435,
+      "input_tokens": 12356,
+      "output_tokens": 1787,
+      "cost_usd": 0.0,
+      "scores": {
+        "refused": false,
+        "should_refuse": false,
+        "refusal_correct": true,
+        "cited": false,
+        "tool_calls": 3,
+        "must_mention_hits": [],
+        "must_mention_total": 2,
+        "must_mention_ok": false,
+        "accuracy_applicable": false,
+        "accurate": null,
+        "disclosed_restatement": false,
+        "needs_manual_review": true
+      },
+      "error": null
+    }
+  ]
+}
