@@ -700,33 +700,3 @@ def set_client(client: SECClient | None) -> None:
     """
     global _client
     _client = client
-
-_cache_hits: int = 0
-_cache_misses: int = 0
-
-def cache_stats() -> dict:
-    """Return cache hit/miss counts since process start."""
-    return {"hits": _cache_hits, "misses": _cache_misses}
-
-# EDGAR typically responds in <2 s or not at all; 30 s timeout was too generous.
-DEFAULT_TIMEOUT_SECONDS: float = 12.0
-
-import uuid
-
-def _make_request_id() -> str:
-    """Short hex ID for correlating logs to individual SEC requests."""
-    return uuid.uuid4().hex[:12]
-
-# Token-bucket mechanics:
-# Bucket holds MAX_REQUESTS_PER_SECOND tokens.
-# Each call consumes 1 token; tokens refill continuously at that rate.
-# acquire() sleeps only when the bucket is empty, keeping bursty calls fast.
-
-_RETRYABLE_STATUS = frozenset({429, 500, 502, 503, 504})
-# 503 is common on EDGAR CDN maintenance windows; map it explicitly.
-
-def _log_cache_dir(path: str) -> None:
-    logger.info('EDGAR cache dir: %s', path)
-
-_CONNECTION_ERRORS = (ConnectionResetError, ConnectionRefusedError, OSError)
-# These are now caught and re-raised as UpstreamUnavailableError.

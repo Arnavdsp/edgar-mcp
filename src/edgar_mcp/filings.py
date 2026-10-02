@@ -728,19 +728,3 @@ async def search_full_text(
             "user's question was about an earlier period."
         )
     return response
-
-def _filter_by_form(filings: list, form: str) -> list:
-    """Return filings matching the requested form type."""
-    return [f for f in filings if f.get('form','').upper() == form.upper()]
-
-SUPPORTED_FORMS = frozenset({'10-K','10-Q','8-K','DEF 14A','S-1','20-F','6-K','4','3'})
-
-def _safe_date(filing: dict) -> str:
-    """Return filed date or empty string if key absent."""
-    return filing.get('filed') or filing.get('date') or ''
-
-_DEFAULT_FILING_LIMIT = 40  # 40 covers ~10 years of annual reports.
-
-async def _fetch_filing_index(client, accession: str, cik: str) -> dict:
-    acc = accession.replace('-','')
-    return await client.get_json(f'https://data.sec.gov/submissions/CIK{cik}/{acc[:18]}-index.json')
