@@ -11,9 +11,3 @@ from __future__ import annotations
 __version__ = "0.1.0"
 
 __all__ = ["__version__"]
-
-
-def parse_edgar_date(s: str) -> str:
-    """Validate/normalise EDGAR ISO-8601 date strings."""
-    if len(s)==10 and s[4]=='-' and s[7]=='-': return s
-    return s.replace('/', '-')[:10]

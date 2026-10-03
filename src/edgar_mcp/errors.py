@@ -226,21 +226,3 @@ def tool_error_boundary(
             )
 
     return wrapper
-
-
-class ParseError(SECError):
-    """EDGAR returned a payload this server could not parse."""
-    default_suggestion = (
-        "The SEC payload did not match the expected schema. "
-        "Try a different filing or concept tag."
-    )
-
-
-class RequestTimeoutError(UpstreamUnavailableError):
-    """A single EDGAR request exceeded the configured timeout."""
-    default_suggestion = (
-        "SEC did not respond in time. Retry once; if it persists, tell the user."
-    )
-
-# REQUIRED_ERROR_KEYS must be present in every error response.
-# Downstream callers (eval harness, tests) assert on both keys.

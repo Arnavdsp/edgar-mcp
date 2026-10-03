@@ -311,15 +311,3 @@ def test_a_company_without_the_concept_is_listed_not_dropped(
     )
     assert [u["ticker"] for u in result["unavailable"]] == ["ZZZZ"]
     assert any("not in the comparison" in n for n in result["notes"])
-
-
-def test_filter_by_form_8k():
-    from edgar_mcp.filings import _filter_by_form
-    fs = [{'form':'10-K'},{'form':'8-K'},{'form':'8-K'}]
-    assert len(_filter_by_form(fs,'8-K')) == 2
-
-
-def test_safe_date_missing_key():
-    from edgar_mcp.filings import _safe_date
-    assert _safe_date({}) == ''
-    assert _safe_date({'filed':'2024-01-15'}) == '2024-01-15'
