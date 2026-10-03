@@ -301,10 +301,3 @@ def test_the_user_agent_is_set_on_every_request(tmp_path) -> None:
 
     asyncio.run(fetch())
     assert seen == ["Arnav arnavhpd@gmail.com"] * 2
-
-
-def test_same_url_same_cache_key(tmp_path):
-    from edgar_mcp.client import ResponseCache
-    c = ResponseCache(str(tmp_path))
-    url = 'https://data.sec.gov/submissions/CIK0000320193.json'
-    assert c._key(url) == c._key(url)

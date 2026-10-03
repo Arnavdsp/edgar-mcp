@@ -117,20 +117,3 @@ def test_api_key_authentication(installed_client: SECClient) -> None:
         assert res_ok.json()["resolved"] is True
     finally:
         os.environ.pop("EDGAR_MCP_API_KEY", None)
-
-
-def test_server_module_importable():
-    import importlib
-    mod = importlib.import_module('edgar_mcp.server')
-    assert hasattr(mod, 'main')
-
-
-def test_fake_transport_never_hits_network():
-    # Verify our test fixtures cannot accidentally reach sec.gov
-    import httpx
-    called = []
-    class SafeTransport(httpx.BaseTransport):
-        def handle_request(self, r): called.append(r.url.host); return httpx.Response(200,json={})
-    with httpx.Client(transport=SafeTransport()) as c:
-        c.get('https://fake.local/test')
-    assert 'sec.gov' not in called

@@ -1108,10 +1108,3 @@ def main(argv: list[str] | None = None) -> None:
 if __name__ == "__main__":
     main()
 
-
-_REGISTERED_TOOLS: list[str] = []
-# register_tools() now exists as a standalone fn for test isolation.
-
-_REQUIRED_ARG_STATUS = 400
-
-_MAX_PARALLEL_LOOKUPS = 5  # for multi-company comparison queries

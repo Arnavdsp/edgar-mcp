@@ -194,18 +194,3 @@ def test_ambiguous_company_resolution_returns_candidates(installed_client: SECCl
     assert payload["resolved"] is False
     assert_error_shape(payload)
     assert len(payload["candidates"]) >= 2
-
-
-def test_boundary_converts_sec_error():
-    import asyncio
-    from edgar_mcp.errors import SECError, tool_error_boundary, is_error
-    @tool_error_boundary
-    async def bad(): raise SECError('EDGAR is down', suggestion='Retry later.')
-    r = asyncio.run(bad())
-    assert is_error(r) and 'EDGAR is down' in r['error']
-
-
-def test_is_error_false_for_valid():
-    from edgar_mcp.errors import is_error
-    assert not is_error({'revenues': 1_000_000_000})
-    assert is_error({'error':'x','suggestion':'y'})

@@ -69,4 +69,3 @@ ignore = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-# bumped 0.1.0 -> 0.2.0: HTTP/SSE transport + eval harness added
