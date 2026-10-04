@@ -114,8 +114,9 @@ Lookups went from 12% to 83%. Six of them (`assets_amzn_fy24`,
 `rnd_nvda_fy24`) now pass every run, thanks to the tag fallback chains, period
 normalization and pre-warmed company lookups.
 
-Errored attempts fell by 66.7%, mostly because the eval now checkpoints. A
-free-tier 429 retry no longer corrupts or restarts a multi-run batch.
+Errored attempts fell by 66.7% (from 18 to 6 per run) in these results. The
+eval also checkpoints now, so a free-tier 429 retry no longer corrupts or
+restarts a multi-run batch.
 
 ---
 
@@ -417,9 +418,10 @@ Because Microsoft’s fiscal year ends 184 days before Amazon’s, the two fig
 ### Why the latency is so high
 
 These runs used `openai/gpt-oss-20b` on Groq's free tier. The p95 of 3,164.8s
-is mostly the free tier's tokens-per-minute throttling, not the server:
-multi-turn prompts carrying tool output hit HTTP 429s, and each retry backed
-off for anywhere from 10s to 270s. Errored attempts went from 18 to 6,
+may partly reflect the free tier's tokens-per-minute throttling:
+multi-turn prompts carrying tool output hit HTTP 429s, and the retry loop
+waits up to 120s per backoff (`min(delay, 120.0)` in `evals/run_eval.py`), so
+a single question can spend several minutes waiting. Errored attempts went from 18 to 6,
 refusal correctness stayed at 92.0% in every run, and numeric accuracy was
 83.3% against verified SEC facts.
 
