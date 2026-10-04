@@ -8,11 +8,13 @@ smoothed over**.
      above the fold does more than the whole README below it.
      Script: demo/SCRIPT.md -->
 
-> ### 📊 Evaluation & Deployment Status
-> * **Model & Infrastructure:** Tested on `openai/gpt-oss-20b` via Groq free tier.
-> * **Evaluation Scale:** 25 hand-verified financial questions evaluated across **3 full runs** (75 total attempts) using 6 EDGAR MCP tools over stdio.
-> * **Headline Results:** **83.3% numeric accuracy** on verified financial lookups (up from 12.5%, a **+70.8% absolute gain**) and **92.0% refusal correctness** (safely refusing out-of-scope or unanswerable queries). See [Results](#results) below for the complete before vs. after comparison and category breakdown.
-> * **Production Deployment:** Read [`DEPLOYMENT.md`](DEPLOYMENT.md) for production guidelines, SEC rate limits (10 req/s), concept fallback tag resolution, and interpretation guardrails.
+> Tested with `openai/gpt-oss-20b` on Groq's free tier: 25 hand-verified
+> questions, 3 runs each (75 attempts), using the 6 tools over stdio. Numeric
+> accuracy went from 12.5% to 83.3% (+70.8 points) and refusal correctness is
+> 92.0%, meaning it declines out-of-scope or unanswerable questions. The full
+> before/after comparison and per-category numbers are under [Results](#results).
+> [`DEPLOYMENT.md`](DEPLOYMENT.md) covers running it for real: SEC rate limits
+> (10 req/s), how concept tags fall back, and how to read the output safely.
 
 ---
 
@@ -76,35 +78,44 @@ you pay tokens for definitions that never get used.
 
 ## Results
 
-### 📈 Before vs. After Benchmark Comparison
+### Before and after
 
-A comparative evaluation of 75 attempts (3 runs × 25 questions) on `openai/gpt-oss-20b` before and after tool execution reliability, SEC pre-warming, and checkpoint recovery:
+The same 75 attempts (3 runs × 25 questions) on `openai/gpt-oss-20b`, before and after making tool execution more reliable, pre-warming SEC lookups and adding checkpoint recovery:
 
-| Metric | Baseline Run (Sep 11, 2026) | Current Run (Oct 1, 2026) | Delta / Improvement |
+| Metric | Baseline (Sep 11, 2026) | Current (Oct 1, 2026) | Change |
 |---|---|---|---|
-| **Numeric Accuracy** (within tolerance) | 12.5% (±12.5) | **83.3%** (±7.2) | **+70.8%** (6.7× improvement) |
-| **Refusal Correctness** | 90.7% (±2.3) | **92.0%** (±0.0) | **+1.3%** |
-| **Required-Phrase Coverage** | 29.3% (±2.3) | **62.7%** (±6.1) | **+33.4%** (2.1× improvement) |
-| **Tool Calls per Question** | 0.17 (±0.17) | **1.71** (±0.63) | **+1.54** (10× tool utilization) |
-| **Errored Attempts** | 18 (±1) | **6** (±4) | **-66.7%** (3× error reduction) |
-| **Latency p50** | 2,083.0s | **601.3s** | **-71.1%** (~3.5× faster) |
-| **Latency p95** | 4,268.4s | **3,164.8s** | **-25.9%** |
+| Numeric accuracy (within tolerance) | 12.5% (±12.5) | 83.3% (±7.2) | +70.8 pts (6.7×) |
+| Refusal correctness | 90.7% (±2.3) | 92.0% (±0.0) | +1.3 pts |
+| Required-phrase coverage | 29.3% (±2.3) | 62.7% (±6.1) | +33.4 pts (2.1×) |
+| Tool calls per question | 0.17 (±0.17) | 1.71 (±0.63) | +1.54 (10×) |
+| Errored attempts | 18 (±1) | 6 (±4) | -66.7% (3× fewer) |
+| Latency p50 | 2,083.0s | 601.3s | -71.1% (~3.5× faster) |
+| Latency p95 | 4,268.4s | 3,164.8s | -25.9% |
 
-#### Category Pass Rate Comparison
+#### Pass rate by category, before and after
 
-| Category | Questions | Baseline Pass Rate | Current Pass Rate | Delta |
+| Category | Questions | Baseline | Current | Change |
 |---|---|---|---|---|
-| **Lookup** | 8 | 12% | **83%** | **+71%** |
-| **Comparison** | 6 | 0% | **44%** | **+44%** |
-| **Refusal** | 4 | 42% | **50%** | **+8%** |
-| **Restatement** | 2 | 0% | **17%** | **+17%** |
-| **Ambiguous** | 5 | 33% | **20%** | -13% |
+| Lookup | 8 | 12% | 83% | +71 pts |
+| Comparison | 6 | 0% | 44% | +44 pts |
+| Refusal | 4 | 42% | 50% | +8 pts |
+| Restatement | 2 | 0% | 17% | +17 pts |
+| Ambiguous | 5 | 33% | 20% | -13 pts |
 
-#### Key Drivers of the Performance Jump
+#### What changed between the two runs
 
-1. **Active Tool Utilization (0.17 → 1.71 calls/q):** In the baseline run, the model frequently attempted to answer financial queries from weights without tool invocation, causing hallucinations or failed assertions. In the current run, tool calling is reliably triggered, directly fetching primary filings from SEC EDGAR.
-2. **Deterministic Lookup Accuracy (12% → 83%):** Standard financial lookups (`assets_amzn_fy24`, `cash_tsla_fy24`, `opinc_aapl_fy24`, `liab_msft_fy24`, `ni_msft_fy24`, `rnd_nvda_fy24`) now hit 100% pass rates through tag fallback chains, period normalization, and pre-warmed company resolution.
-3. **Resilience & Checkpoint Recovery:** Checkpoint persistence allows recovery from free-tier rate limits (429 retries) without corrupting or restarting multi-run batches, reducing errored attempts by 66.7%.
+Most of the gain came from the model actually calling the tools. In the
+baseline it made 0.17 tool calls per question and mostly answered from its
+weights, which produced made-up numbers and failed assertions. Now it calls
+them 1.71 times per question and pulls the figures from EDGAR.
+
+Lookups went from 12% to 83%. Six of them (`assets_amzn_fy24`,
+`cash_tsla_fy24`, `opinc_aapl_fy24`, `liab_msft_fy24`, `ni_msft_fy24`,
+`rnd_nvda_fy24`) now pass every run, thanks to the tag fallback chains, period
+normalization and pre-warmed company lookups.
+
+Errored attempts fell by 66.7%, mostly because the eval now checkpoints. A
+free-tier 429 retry no longer corrupts or restarts a multi-run batch.
 
 ---
 
@@ -403,11 +414,14 @@ Because Microsoft’s fiscal year ends 184 days before Amazon’s, the two fig
 <!-- RESULTS:END -->
 
 
-### Runtime & Rate-Limiting Profile
+### Why the latency is so high
 
-* **Provider & Model:** Groq free tier hosting `openai/gpt-oss-20b`.
-* **Rate Limits & Backoff:** The elevated tail latency (p95 of 3,164.8s) reflects Groq free-tier token-per-minute (TPM) throttling rather than server execution time. Multi-turn prompts with financial tool outputs triggered HTTP 429 backoffs ranging from 10s up to 270s per retry attempt.
-* **Failure Analysis:** Errored attempts dropped from 18 to 6. Refusal correctness held rock-solid at 92.0% across runs, while numeric accuracy reached 83.3% against verified SEC facts.
+These runs used `openai/gpt-oss-20b` on Groq's free tier. The p95 of 3,164.8s
+is mostly the free tier's tokens-per-minute throttling, not the server:
+multi-turn prompts carrying tool output hit HTTP 429s, and each retry backed
+off for anywhere from 10s to 270s. Errored attempts went from 18 to 6,
+refusal correctness stayed at 92.0% in every run, and numeric accuracy was
+83.3% against verified SEC facts.
 
 ---
 
