@@ -1,10 +1,10 @@
-# EDGAR MCP — SEC financial filing data as agent tools
+# EDGAR MCP : SEC financial filing data as agent tools
 
 Six MCP tools that let an AI agent answer questions about US public company
 financials, built so that the messy parts of the data are **surfaced rather than
 smoothed over**.
 
-<!-- DEMO GOES HERE. Record it before you publish this repo — a 3-minute video
+<!-- DEMO GOES HERE. Record it before you publish this repo  a 3-minute video
      above the fold does more than the whole README below it.
      Script: demo/SCRIPT.md -->
 
@@ -21,7 +21,7 @@ smoothed over**.
 ## The problem
 
 A junior analyst at a small fund needs to answer questions about public company
-financials — revenue trends, margin changes, comparisons across companies. Today
+financials : revenue trends, margin changes, comparisons across companies. Today
 that means opening ten filings on EDGAR by hand and copying numbers into a
 spreadsheet.
 
@@ -41,7 +41,7 @@ Three specific ways it lies:
    perfectly correct.
 3. **"FY2024" is not one time period.** NVIDIA's fiscal 2024 ended in January
    2024. Apple's fiscal 2023 ended in September 2023. Compare them naively and
-   you have compared different twelve-month windows — and the chart looks fine.
+   you have compared different twelve-month windows  and the chart looks fine.
 
 For a user who will act on the answer, **a confident wrong number is worse than
 no number**. That constraint drove every design decision here.
